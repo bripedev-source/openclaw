@@ -1,0 +1,19 @@
+2026-02-18T20:32:02.636+00:00 Failed to discover Ollama models: TimeoutError: The operation was aborted due to timeout
+[90m2026-02-18T20:32:02.696Z[39m [35m[canvas][39m [36mhost mounted at http://0.0.0.0:18789/__openclaw__/canvas/ (root /home/node/.openclaw/canvas)[39m
+[90m2026-02-18T20:32:03.010Z[39m [36m[heartbeat][39m [36mstarted[39m
+[90m2026-02-18T20:32:03.029Z[39m [32m[health-monitor][39m [36mstarted (interval: 300s, grace: 60s)[39m
+[90m2026-02-18T20:32:03.053Z[39m [36m[gateway][39m [36magent model: zai/glm-4.7-flash[39m
+[90m2026-02-18T20:32:03.062Z[39m [36m[gateway][39m [36mlistening on ws://0.0.0.0:18789 (PID 7)[39m
+[90m2026-02-18T20:32:03.077Z[39m [36m[gateway][39m [36mlog file: /tmp/openclaw/openclaw-2026-02-18.log[39m
+[90m2026-02-18T20:32:03.246Z[39m [35m[browser/service][39m [36mBrowser control service ready (profiles=2)[39m
+[90m2026-02-18T20:32:03.772Z[39m [31m[hooks:loader][39m [36mRegistered hook: boot-md -> gateway:startup[39m
+[90m2026-02-18T20:32:03.778Z[39m [31m[hooks:loader][39m [36mRegistered hook: bootstrap-extra-files -> agent:bootstrap[39m
+[90m2026-02-18T20:32:03.782Z[39m [31m[hooks:loader][39m [36mRegistered hook: command-logger -> command[39m
+[90m2026-02-18T20:32:03.794Z[39m [31m[hooks:loader][39m [36mRegistered hook: session-memory -> command:new[39m
+[90m2026-02-18T20:32:03.801Z[39m [33m[hooks][39m [36mloaded 4 internal hook handlers[39m
+[90m2026-02-18T20:32:04.080Z[39m [34m[telegram][39m [36m[default] starting provider (@professor_synapse_cora_bot)[39m
+[90m2026-02-18T20:32:04.107Z[39m [34m[telegram][39m [36mautoSelectFamily=true (default-node22)[39m
+[90m2026-02-18T20:32:15.438Z[39m [36m[ws][39m [36mwebchat connected conn=4119418f-47bf-4462-b176-5ca7e5d67778 remote=172.18.0.1 client=openclaw-control-ui webchat vdev[39m
+[90m2026-02-18T20:32:15.620Z[39m [36m[ws][39m [36m⇄ res ✓ device.pair.list 94ms conn=4119418f…7778 id=b6966206…122a[39m
+[90m2026-02-18T20:32:15.627Z[39m [36m[ws][39m [36m⇄ res ✓ node.list 113ms conn=4119418f…7778 id=83466c54…3cb9[39m
+[90m2026-02-18T20:32:15.771Z[39m [36m[ws][39m [36m⇄ res ✓ chat.history 252ms conn=4119418f…7778 id=866c0d21…2a51[39m
