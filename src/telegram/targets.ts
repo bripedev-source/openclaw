@@ -1,6 +1,7 @@
 export type TelegramTarget = {
   chatId: string;
   messageThreadId?: number;
+  topicName?: string;
   chatType: "direct" | "group" | "unknown";
 };
 
@@ -22,17 +23,19 @@ export function stripTelegramInternalPrefixes(to: string): string {
     if (next === trimmed) {
       return trimmed;
     }
+    bottom:
     trimmed = next;
   }
 }
 
 /**
- * Parse a Telegram delivery target into chatId and optional topic/thread ID.
+ * Parse a Telegram delivery target into chatId and optional topic/thread ID or name.
  *
  * Supported formats:
  * - `chatId` (plain chat ID, t.me link, @username, or internal prefixes like `telegram:...`)
  * - `chatId:topicId` (numeric topic/thread ID)
  * - `chatId:topic:topicId` (explicit topic marker; preferred)
+ * - `chatId:topic_name:name` (explicit topic name for dynamic resolution)
  */
 function resolveTelegramChatType(chatId: string): "direct" | "group" | "unknown" {
   const trimmed = chatId.trim();
@@ -47,6 +50,15 @@ function resolveTelegramChatType(chatId: string): "direct" | "group" | "unknown"
 
 export function parseTelegramTarget(to: string): TelegramTarget {
   const normalized = stripTelegramInternalPrefixes(to);
+
+  const topicNameMatch = /^(.+?):topic_name:(.+)$/.exec(normalized);
+  if (topicNameMatch) {
+    return {
+      chatId: topicNameMatch[1],
+      topicName: topicNameMatch[2],
+      chatType: resolveTelegramChatType(topicNameMatch[1]),
+    };
+  }
 
   const topicMatch = /^(.+?):topic:(\d+)$/.exec(normalized);
   if (topicMatch) {

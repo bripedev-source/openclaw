@@ -1,5 +1,6 @@
 import path from "node:path";
 import { resolveSandboxInputPath, resolveSandboxPath } from "../sandbox-paths.js";
+import { resolveBundledSkillsDir } from "../skills/bundled-dir.js";
 import { SANDBOX_AGENT_WORKSPACE_MOUNT } from "./constants.js";
 import type { SandboxContext } from "./types.js";
 
@@ -48,9 +49,9 @@ export function parseSandboxBindMount(spec: string): ParsedBindMount | null {
   const optionsToken = parsed.options.trim().toLowerCase();
   const optionParts = optionsToken
     ? optionsToken
-        .split(",")
-        .map((entry) => entry.trim())
-        .filter(Boolean)
+      .split(",")
+      .map((entry) => entry.trim())
+      .filter(Boolean)
     : [];
   const writable = !optionParts.includes("ro");
   return {
@@ -108,6 +109,16 @@ export function buildSandboxFsMounts(sandbox: SandboxContext): SandboxFsMount[] 
       containerRoot: SANDBOX_AGENT_WORKSPACE_MOUNT,
       writable: sandbox.workspaceAccess === "rw",
       source: "agent",
+    });
+  }
+
+  const bundledSkillsDir = resolveBundledSkillsDir();
+  if (bundledSkillsDir) {
+    mounts.push({
+      hostRoot: path.resolve(bundledSkillsDir),
+      containerRoot: "/app/skills",
+      writable: false,
+      source: "bind",
     });
   }
 

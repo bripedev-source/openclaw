@@ -1,3 +1,4 @@
+import fs from "node:fs/promises";
 import crypto from "node:crypto";
 import { Type } from "@sinclair/typebox";
 import { clearSessionQueues } from "../../auto-reply/reply/queue.js";
@@ -28,6 +29,7 @@ import { AGENT_LANE_SUBAGENT } from "../lanes.js";
 import { abortEmbeddedPiRun } from "../pi-embedded.js";
 import { optionalStringEnum } from "../schema/typebox.js";
 import { getSubagentDepthFromSessionStore } from "../subagent-depth.js";
+import { DEFAULT_AGENT_WORKSPACE_DIR, resolveSessionWorkspaceDir } from "../workspace.js";
 import {
   clearSubagentRunSteerRestart,
   listSubagentRunsForRequester,
@@ -40,7 +42,7 @@ import type { AnyAgentTool } from "./common.js";
 import { jsonResult, readNumberParam, readStringParam } from "./common.js";
 import { resolveInternalSessionKey, resolveMainSessionAlias } from "./sessions-helpers.js";
 
-const SUBAGENT_ACTIONS = ["list", "kill", "steer"] as const;
+const SUBAGENT_ACTIONS = ["list", "kill", "steer", "cleanup"] as const;
 type SubagentAction = (typeof SUBAGENT_ACTIONS)[number];
 
 const DEFAULT_RECENT_MINUTES = 30;
@@ -668,6 +670,54 @@ export function createSubagentsTool(opts?: { agentSessionKey?: string }): AnyAge
           label: resolveSubagentLabel(resolved.entry),
           text: `steered ${resolveSubagentLabel(resolved.entry)}.`,
         });
+      }
+      if (action === "cleanup") {
+        const target = readStringParam(params, "target", { required: true });
+        const resolved = resolveSubagentTarget(runs, target, { recentMinutes });
+        if (!resolved.entry) {
+          return jsonResult({
+            status: "error",
+            action: "cleanup",
+            target,
+            error: resolved.error ?? "Unknown subagent target.",
+          });
+        }
+        if (!resolved.entry.endedAt) {
+          return jsonResult({
+            status: "forbidden",
+            action: "cleanup",
+            target,
+            runId: resolved.entry.runId,
+            text: `${resolveSubagentLabel(resolved.entry)} is still running. Kill it before cleanup.`,
+          });
+        }
+        const workspaceDir = resolveSessionWorkspaceDir(resolved.entry.childSessionKey);
+        if (workspaceDir === DEFAULT_AGENT_WORKSPACE_DIR) {
+          return jsonResult({
+            status: "error",
+            action: "cleanup",
+            target,
+            text: "Cannot clean up main workspace.",
+          });
+        }
+        try {
+          await fs.rm(workspaceDir, { recursive: true, force: true });
+          return jsonResult({
+            status: "ok",
+            action: "cleanup",
+            target,
+            runId: resolved.entry.runId,
+            text: `Cleaned up workspace for ${resolveSubagentLabel(resolved.entry)}.`,
+          });
+        } catch (err) {
+          return jsonResult({
+            status: "error",
+            action: "cleanup",
+            target,
+            runId: resolved.entry.runId,
+            error: `Failed to remove workspace: ${err instanceof Error ? err.message : String(err)}`,
+          });
+        }
       }
       return jsonResult({
         status: "error",

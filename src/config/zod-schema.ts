@@ -72,6 +72,25 @@ const MemoryQmdLimitsSchema = z
   })
   .strict();
 
+const ToolsWebSearchSchema = z.object({
+  enabled: z.boolean().default(true),
+  provider: z.union([
+    z.literal("brave"),
+    z.literal("perplexity"),
+    z.literal("grok"),
+    z.literal("duckduckgo"),
+    z.literal("duckduckgo-mcp"),
+  ]).default("brave"),
+  apiKey: z.string().optional(),
+  perplexity: z.object({
+    apiKey: z.string().optional(),
+    sessions: MemoryQmdSessionSchema.optional(),
+    update: MemoryQmdUpdateSchema.optional(),
+    limits: MemoryQmdLimitsSchema.optional(),
+    scope: SessionSendPolicySchema.optional(),
+  }).strict().optional(),
+}).strict().optional();
+
 const MemoryQmdSchema = z
   .object({
     command: z.string().optional(),

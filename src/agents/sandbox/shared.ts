@@ -1,19 +1,8 @@
 import path from "node:path";
-import { normalizeAgentId } from "../../routing/session-key.js";
-import { resolveUserPath } from "../../utils.js";
-import { resolveAgentIdFromSessionKey } from "../agent-scope.js";
-import { hashTextSha256 } from "./hash.js";
+import { resolveUserPath, slugifySessionKey } from "../../utils.js";
+import { normalizeAgentId, resolveAgentIdFromSessionKey } from "../agent-scope.js";
 
-export function slugifySessionKey(value: string) {
-  const trimmed = value.trim() || "session";
-  const hash = hashTextSha256(trimmed).slice(0, 8);
-  const safe = trimmed
-    .toLowerCase()
-    .replace(/[^a-z0-9._-]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-  const base = safe.slice(0, 32) || "session";
-  return `${base}-${hash}`;
-}
+export { slugifySessionKey };
 
 export function resolveSandboxWorkspaceDir(root: string, sessionKey: string) {
   const resolvedRoot = resolveUserPath(root);

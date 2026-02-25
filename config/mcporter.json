@@ -1,0 +1,14 @@
+{
+    "mcpServers": {
+        "duckduckgo": {
+            "command": "docker",
+            "args": [
+                "exec",
+                "-i",
+                "openclaw-mcp-duckduckgo-1",
+                "ddg-mcp"
+            ],
+            "env": {}
+        }
+    }
+}

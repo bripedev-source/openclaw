@@ -245,11 +245,15 @@ export function buildSenderLabel(msg: Message, senderId?: number | string) {
   return idPart ?? "id:unknown";
 }
 
-export function buildGroupLabel(msg: Message, chatId: number | string, messageThreadId?: number) {
+export function buildGroupLabel(msg: Message, chatId: number | string, messageThreadId?: number, topicName?: string) {
   const title = msg.chat?.title;
-  const topicSuffix = messageThreadId != null ? ` topic:${messageThreadId}` : "";
+  // Use adaptive topic name if available, otherwise fallback to topic:ID
+  const topicSuffix = topicName
+    ? ` / ${topicName}`
+    : (messageThreadId != null ? ` topic:${messageThreadId}` : "");
+
   if (title) {
-    return `${title} id:${chatId}${topicSuffix}`;
+    return `${title}${topicSuffix}`; // e.g. "CoRax HQ / Systems" or "CoRax HQ topic:3"
   }
   return `group:${chatId}${topicSuffix}`;
 }

@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { resolveConfigEnvVars } from "./env-substitution.js";
 
 export function loadJsonFile(pathname: string): unknown {
   try {
@@ -7,7 +8,8 @@ export function loadJsonFile(pathname: string): unknown {
       return undefined;
     }
     const raw = fs.readFileSync(pathname, "utf8");
-    return JSON.parse(raw) as unknown;
+    const parsed = JSON.parse(raw);
+    return resolveConfigEnvVars(parsed);
   } catch {
     return undefined;
   }

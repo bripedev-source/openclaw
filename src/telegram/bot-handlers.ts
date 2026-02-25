@@ -5,6 +5,7 @@ import {
   createInboundDebouncer,
   resolveInboundDebounceMs,
 } from "../auto-reply/inbound-debounce.js";
+import { resolveTextChunkLimit } from "../auto-reply/chunk.js";
 import { buildCommandsPaginationKeyboard } from "../auto-reply/reply/commands-info.js";
 import { buildModelsProviderData } from "../auto-reply/reply/commands-models.js";
 import { resolveStoredModelOverride } from "../auto-reply/reply/model-selection.js";
@@ -13,6 +14,9 @@ import { buildCommandsMessagePaginated } from "../auto-reply/status.js";
 import { resolveChannelConfigWrites } from "../channels/plugins/config-writes.js";
 import { loadConfig } from "../config/config.js";
 import { writeConfigFile } from "../config/io.js";
+import { createReplyPrefixOptions } from "../channels/reply-prefix.js";
+import { finalizeInboundContext } from "../auto-reply/reply/inbound-context.js";
+import { dispatchReplyWithBufferedBlockDispatcher } from "../auto-reply/reply/provider-dispatcher.js";
 import { loadSessionStore, resolveStorePath } from "../config/sessions.js";
 import type { TelegramGroupConfig, TelegramTopicConfig } from "../config/types.js";
 import { danger, logVerbose, warn } from "../globals.js";
@@ -30,12 +34,17 @@ import {
 import type { TelegramMediaRef } from "./bot-message-context.js";
 import { RegisterTelegramHandlerParams } from "./bot-native-commands.js";
 import { MEDIA_GROUP_TIMEOUT_MS, type MediaGroupEntry } from "./bot-updates.js";
+import { deliverReplies } from "./bot/delivery.js";
 import { resolveMedia } from "./bot/delivery.js";
 import {
+  buildSenderLabel,
+  buildTelegramGroupFrom,
   buildTelegramGroupPeerId,
   buildTelegramParentPeer,
+  buildTypingThreadParams,
   resolveTelegramForumThreadId,
   resolveTelegramGroupAllowFromContext,
+  resolveTelegramThreadSpec,
 } from "./bot/helpers.js";
 import type { TelegramContext } from "./bot/types.js";
 import {
@@ -74,7 +83,7 @@ export const registerTelegramHandlers = ({
   const TELEGRAM_TEXT_FRAGMENT_START_THRESHOLD_CHARS = 4000;
   const TELEGRAM_TEXT_FRAGMENT_MAX_GAP_MS =
     typeof opts.testTimings?.textFragmentGapMs === "number" &&
-    Number.isFinite(opts.testTimings.textFragmentGapMs)
+      Number.isFinite(opts.testTimings.textFragmentGapMs)
       ? Math.max(10, Math.floor(opts.testTimings.textFragmentGapMs))
       : DEFAULT_TEXT_FRAGMENT_MAX_GAP_MS;
   const TELEGRAM_TEXT_FRAGMENT_MAX_ID_GAP = 1;
@@ -82,7 +91,7 @@ export const registerTelegramHandlers = ({
   const TELEGRAM_TEXT_FRAGMENT_MAX_TOTAL_CHARS = 50_000;
   const mediaGroupTimeoutMs =
     typeof opts.testTimings?.mediaGroupFlushMs === "number" &&
-    Number.isFinite(opts.testTimings.mediaGroupFlushMs)
+      Number.isFinite(opts.testTimings.mediaGroupFlushMs)
       ? Math.max(10, Math.floor(opts.testTimings.mediaGroupFlushMs))
       : MEDIA_GROUP_TIMEOUT_MS;
 
@@ -522,6 +531,134 @@ export const registerTelegramHandlers = ({
       runtime.error?.(danger(`telegram reaction handler failed: ${String(err)}`));
     }
   });
+
+  // Handle Forum Topic Creation/Edit (Auto-Persona)
+  const handleTopicUpdate = async (ctx: any) => {
+    const topicCreated = ctx.message?.forum_topic_created;
+    const topicEdited = ctx.message?.forum_topic_edited;
+    const topicName = topicCreated?.name || topicEdited?.name;
+    const topicIcon = topicEdited?.icon_custom_emoji_id;
+    const topicId = ctx.message?.message_thread_id;
+    const chatId = ctx.chat?.id;
+
+    if (topicId && chatId && (topicName || topicIcon)) {
+      const { setTopicMetadata, getTopicMetadata } = await import("./topic-store.js");
+      const { TOPIC_PERSONA_SYSTEM_PROMPT, formatTopicPersonaUserPrompt } = await import("./topic-generator.js");
+
+      const existing = getTopicMetadata(chatId, topicId);
+      const isRename = existing && topicName && existing.name !== topicName;
+      const isIconUpdate = existing && topicIcon && existing.icon !== topicIcon;
+
+      if (!existing || isRename || isIconUpdate) {
+        logVerbose(`telegram: detected ${isRename ? "rename" : isIconUpdate ? "icon update" : "new"} topic "${topicName || existing?.name}" (${topicId}) routing through OpenClaw agent`);
+
+        // Resolve routing and session
+        const threadSpec = resolveTelegramThreadSpec({ isGroup: true, isForum: true, messageThreadId: topicId });
+        const route = resolveAgentRoute({
+          cfg,
+          channel: "telegram",
+          accountId,
+          peer: { kind: "group", id: buildTelegramGroupPeerId(chatId, topicId) },
+          parentPeer: buildTelegramParentPeer({ isGroup: true, resolvedThreadId: topicId, chatId })
+        });
+
+        const { formatTopicRenameUserPrompt } = await import("./topic-generator.js");
+        const prompt = isRename
+          ? formatTopicRenameUserPrompt(existing.name, topicName!)
+          : formatTopicPersonaUserPrompt(topicName || existing?.name || "Unknown");
+
+        const conversationLabel = (ctx.chat?.title ?? "Group") + ` (Topic: ${topicName || existing?.name || "Topic"})`;
+
+        // Finalize context for the agentic activation
+        const ctxPayload = finalizeInboundContext({
+          Body: prompt,
+          BodyForAgent: prompt,
+          RawBody: prompt,
+          From: buildTelegramGroupFrom(chatId, topicId),
+          To: `telegram:${chatId}`,
+          SessionKey: route.sessionKey,
+          AccountId: accountId,
+          ChatType: "group",
+          ConversationLabel: conversationLabel,
+          GroupSubject: ctx.chat?.title ?? undefined,
+          GroupSystemPrompt: TOPIC_PERSONA_SYSTEM_PROMPT,
+          Surface: "telegram",
+          MessageSid: String(ctx.message?.message_id || Date.now()),
+          Timestamp: Date.now(),
+          WasMentioned: true,
+          MessageThreadId: threadSpec.id,
+          IsForum: true,
+          OriginatingChannel: "telegram",
+          OriginatingTo: `telegram:${chatId}`
+        });
+
+        const { onModelSelected, ...prefixOptions } = createReplyPrefixOptions({
+          cfg,
+          agentId: route.agentId,
+          channel: "telegram",
+          accountId: route.accountId,
+        });
+
+        let capturedPersona = "";
+
+        // Dispatch via OpenClaw pipeline
+        await dispatchReplyWithBufferedBlockDispatcher({
+          ctx: ctxPayload,
+          cfg,
+          dispatcherOptions: {
+            ...prefixOptions,
+            deliver: async (payload) => {
+              if (payload.text) {
+                capturedPersona += payload.text;
+                const result = await deliverReplies({
+                  replies: [payload],
+                  chatId: String(chatId),
+                  token: opts.token,
+                  runtime,
+                  bot,
+                  thread: threadSpec,
+                  linkPreview: telegramCfg.linkPreview,
+                  replyToMode: telegramCfg.replyToMode ?? "off",
+                  textLimit: resolveTextChunkLimit(cfg, "telegram", accountId)
+                }) as any;
+
+                // Pin the first message of the persona
+                if (result.delivered && result.messageIds?.[0]) {
+                  try {
+                    await bot.api.pinChatMessage(chatId, Number(result.messageIds[0]));
+                  } catch (e) {
+                    logVerbose(`telegram: failed to pin topic persona: ${String(e)}`);
+                  }
+                }
+              }
+            },
+            onReplyStart: async () => {
+              await bot.api.sendChatAction(chatId, "typing", buildTypingThreadParams(threadSpec.id));
+            },
+            onError: (err) => {
+              runtime.error?.(danger(`telegram topic agent failed: ${String(err)}`));
+            }
+          },
+          replyOptions: {
+            onModelSelected
+          }
+        });
+
+        // Save generated persona and updated metadata
+        setTopicMetadata(chatId, topicId, {
+          name: topicName || existing?.name || "Unknown",
+          icon: topicIcon || existing?.icon,
+          systemPrompt: capturedPersona.trim() || existing?.systemPrompt,
+          updatedAt: Date.now()
+        });
+      }
+    }
+  };
+
+  bot.on([":forum_topic_created", ":forum_topic_edited", ":forum_topic_closed", ":forum_topic_reopened"], (ctx) => {
+    logVerbose(`telegram: forum_topic update received: ${JSON.stringify(ctx.update, null, 2)}`);
+    return handleTopicUpdate(ctx);
+  });
   const processInboundMessage = async (params: {
     ctx: TelegramContext;
     msg: Message;
@@ -595,7 +732,7 @@ export const registerTelegramHandlers = ({
         const entry: TextFragmentEntry = {
           key,
           messages: [{ msg, ctx, receivedAtMs: nowMs }],
-          timer: setTimeout(() => {}, TELEGRAM_TEXT_FRAGMENT_MAX_GAP_MS),
+          timer: setTimeout(() => { }, TELEGRAM_TEXT_FRAGMENT_MAX_GAP_MS),
         };
         textFragmentBuffer.set(key, entry);
         scheduleTextFragmentFlush(entry);
@@ -652,7 +789,7 @@ export const registerTelegramHandlers = ({
               bot.api.sendMessage(chatId, `⚠️ File too large. Maximum size is ${limitMb}MB.`, {
                 reply_to_message_id: msg.message_id,
               }),
-          }).catch(() => {});
+          }).catch(() => { });
         }
         logger.warn({ chatId, error: errMsg }, oversizeLogMessage);
         return;
@@ -670,12 +807,12 @@ export const registerTelegramHandlers = ({
 
     const allMedia = media
       ? [
-          {
-            path: media.path,
-            contentType: media.contentType,
-            stickerMetadata: media.stickerMetadata,
-          },
-        ]
+        {
+          path: media.path,
+          contentType: media.contentType,
+          stickerMetadata: media.stickerMetadata,
+        },
+      ]
       : [];
     const senderId = msg.from?.id ? String(msg.from.id) : "";
     const conversationKey =
@@ -709,7 +846,7 @@ export const registerTelegramHandlers = ({
       operation: "answerCallbackQuery",
       runtime,
       fn: answerCallbackQuery,
-    }).catch(() => {});
+    }).catch(() => { });
     try {
       const data = (callback.data ?? "").trim();
       const callbackMessage = callback.message;
@@ -853,8 +990,8 @@ export const registerTelegramHandlers = ({
         const keyboard =
           result.totalPages > 1
             ? buildInlineKeyboard(
-                buildCommandsPaginationKeyboard(result.currentPage, result.totalPages, agentId),
-              )
+              buildCommandsPaginationKeyboard(result.currentPage, result.totalPages, agentId),
+            )
             : undefined;
 
         try {
@@ -886,7 +1023,7 @@ export const registerTelegramHandlers = ({
             if (errStr.includes("no text in the message")) {
               try {
                 await deleteCallbackMessage();
-              } catch {}
+              } catch { }
               await replyToCallbackChat(text, keyboard ? { reply_markup: keyboard } : undefined);
             } else if (!errStr.includes("message is not modified")) {
               throw editErr;
@@ -1199,17 +1336,17 @@ export const registerTelegramHandlers = ({
       // Use sender_chat (the bot/user that posted) if available.
       const syntheticFrom = post.sender_chat
         ? {
-            id: post.sender_chat.id,
-            is_bot: true as const,
-            first_name: post.sender_chat.title || "Channel",
-            username: post.sender_chat.username,
-          }
+          id: post.sender_chat.id,
+          is_bot: true as const,
+          first_name: post.sender_chat.title || "Channel",
+          username: post.sender_chat.username,
+        }
         : {
-            id: chatId,
-            is_bot: true as const,
-            first_name: post.chat.title || "Channel",
-            username: post.chat.username,
-          };
+          id: chatId,
+          is_bot: true as const,
+          first_name: post.chat.title || "Channel",
+          username: post.chat.username,
+        };
 
       const syntheticMsg: Message = {
         ...post,

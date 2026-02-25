@@ -30,6 +30,7 @@ import { isRecoverableTelegramNetworkError } from "./network-errors.js";
 import { makeProxyFetch } from "./proxy.js";
 import { recordSentMessage } from "./sent-message-cache.js";
 import { parseTelegramTarget, stripTelegramInternalPrefixes } from "./targets.js";
+import { getTopicIdByName, setTopicMetadata } from "./topic-store.js";
 import { resolveTelegramVoiceSend } from "./voice.js";
 
 type TelegramApi = Bot["api"];
@@ -91,7 +92,7 @@ const diagLogger = createSubsystemLogger("telegram/diagnostic");
 function createTelegramHttpLogger(cfg: ReturnType<typeof loadConfig>) {
   const enabled = isDiagnosticFlagEnabled("telegram.http", cfg);
   if (!enabled) {
-    return () => {};
+    return () => { };
   }
   return (label: string, err: unknown) => {
     if (!(err instanceof HttpError)) {
@@ -112,14 +113,14 @@ function resolveTelegramClientOptions(
   });
   const timeoutSeconds =
     typeof account.config.timeoutSeconds === "number" &&
-    Number.isFinite(account.config.timeoutSeconds)
+      Number.isFinite(account.config.timeoutSeconds)
       ? Math.max(1, Math.floor(account.config.timeoutSeconds))
       : undefined;
   return fetchImpl || timeoutSeconds
     ? {
-        ...(fetchImpl ? { fetch: fetchImpl as unknown as ApiClientOptions["fetch"] } : {}),
-        ...(timeoutSeconds ? { timeoutSeconds } : {}),
-      }
+      ...(fetchImpl ? { fetch: fetchImpl as unknown as ApiClientOptions["fetch"] } : {}),
+      ...(timeoutSeconds ? { timeoutSeconds } : {}),
+    }
     : undefined;
 }
 
@@ -336,10 +337,10 @@ function createTelegramRequestWithDiag(params: {
       params.useApiErrorLogging === false
         ? runRequest()
         : withTelegramApiErrorLogging({
-            operation: label ?? "request",
-            fn: runRequest,
-            ...(options?.shouldLog ? { shouldLog: options.shouldLog } : {}),
-          });
+          operation: label ?? "request",
+          fn: runRequest,
+          ...(options?.shouldLog ? { shouldLog: options.shouldLog } : {}),
+        });
     return call.catch((err) => {
       logHttpError(label ?? "request", err);
       throw err;
@@ -434,11 +435,17 @@ export async function sendMessageTelegram(
   const { cfg, account, api } = resolveTelegramApiContext(opts);
   const target = parseTelegramTarget(to);
   const chatId = normalizeChatId(target.chatId);
+
+  let resolvedThreadId = target.messageThreadId;
+  if (target.topicName) {
+    resolvedThreadId = await resolveTopicIdLazily(api, chatId, target.topicName);
+  }
+
   const mediaUrl = opts.mediaUrl?.trim();
   const replyMarkup = buildInlineKeyboard(opts.buttons);
 
   const threadParams = buildTelegramThreadReplyParams({
-    targetMessageThreadId: target.messageThreadId,
+    targetMessageThreadId: resolvedThreadId,
     messageThreadId: opts.messageThreadId,
     chatType: target.chatType,
     replyToMessageId: opts.replyToMessageId,
@@ -676,9 +683,9 @@ export async function sendMessageTelegram(
       const textParams =
         hasThreadParams || replyMarkup
           ? {
-              ...threadParams,
-              ...(replyMarkup ? { reply_markup: replyMarkup } : {}),
-            }
+            ...threadParams,
+            ...(replyMarkup ? { reply_markup: replyMarkup } : {}),
+          }
           : undefined;
       const textRes = await sendTelegramText(followUpText, textParams);
       // Return the text message ID as the "main" message (it's the actual content).
@@ -697,9 +704,9 @@ export async function sendMessageTelegram(
   const textParams =
     hasThreadParams || replyMarkup
       ? {
-          ...threadParams,
-          ...(replyMarkup ? { reply_markup: replyMarkup } : {}),
-        }
+        ...threadParams,
+        ...(replyMarkup ? { reply_markup: replyMarkup } : {}),
+      }
       : undefined;
   const res = await sendTelegramText(text, textParams, opts.plainText);
   const messageId = String(res?.message_id ?? "unknown");
@@ -712,6 +719,27 @@ export async function sendMessageTelegram(
     direction: "outbound",
   });
   return { messageId, chatId: String(res?.chat?.id ?? chatId) };
+}
+
+async function resolveTopicIdLazily(
+  api: TelegramApi,
+  chatId: string,
+  topicName: string,
+): Promise<number> {
+  const existingId = getTopicIdByName(chatId, topicName);
+  if (existingId) {
+    return Number(existingId);
+  }
+  const result = await api.createForumTopic(chatId, topicName);
+  const newId = result.message_thread_id;
+  setTopicMetadata(chatId, newId, {
+    name: topicName,
+    updatedAt: Date.now(),
+  });
+  logVerbose(
+    `[telegram] Auto-created forum topic "${topicName}" (${newId}) in chat ${chatId}`,
+  );
+  return newId;
 }
 
 export async function reactMessageTelegram(
@@ -929,8 +957,13 @@ export async function sendStickerTelegram(
   const target = parseTelegramTarget(to);
   const chatId = normalizeChatId(target.chatId);
 
+  let resolvedThreadId = target.messageThreadId;
+  if (target.topicName) {
+    resolvedThreadId = await resolveTopicIdLazily(api, chatId, target.topicName);
+  }
+
   const threadParams = buildTelegramThreadReplyParams({
-    targetMessageThreadId: target.messageThreadId,
+    targetMessageThreadId: resolvedThreadId,
     messageThreadId: opts.messageThreadId,
     chatType: target.chatType,
     replyToMessageId: opts.replyToMessageId,
@@ -1005,11 +1038,16 @@ export async function sendPollTelegram(
   const target = parseTelegramTarget(to);
   const chatId = normalizeChatId(target.chatId);
 
+  let resolvedThreadId = target.messageThreadId;
+  if (target.topicName) {
+    resolvedThreadId = await resolveTopicIdLazily(api, chatId, target.topicName);
+  }
+
   // Normalize the poll input (validates question, options, maxSelections)
   const normalizedPoll = normalizePollInput(poll, { maxOptions: 10 });
 
   const threadParams = buildTelegramThreadReplyParams({
-    targetMessageThreadId: target.messageThreadId,
+    targetMessageThreadId: resolvedThreadId,
     messageThreadId: opts.messageThreadId,
     chatType: target.chatType,
     replyToMessageId: opts.replyToMessageId,

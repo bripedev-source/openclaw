@@ -231,6 +231,13 @@ export type ChannelHeartbeatAdapter = {
     recipients: string[];
     source: string;
   };
+  resolvePrompt?: (params: {
+    cfg: OpenClawConfig;
+    accountId?: string | null;
+    to: string;
+    threadId?: string | number | null;
+    basePrompt: string;
+  }) => string | Promise<string>;
 };
 
 export type ChannelDirectoryAdapter = {

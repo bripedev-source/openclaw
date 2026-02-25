@@ -55,7 +55,7 @@ function buildCompletionDeliveryMessage(params: {
   if (!hasFindings) {
     return header;
   }
-  return `${header}\n\n${findingsText}`;
+  return `${header}\n\n${findingsText}\n\n💡 Tip: Check HANDOFF.md in the sub-agent's local workspace for a detailed summary.`;
 }
 
 function summarizeDeliveryError(error: unknown): string {
@@ -628,12 +628,13 @@ export function buildSubagentSystemPrompt(params: {
     "4. **Be ephemeral** - You may be terminated after task completion. That's fine.",
     "5. **Trust push-based completion** - Descendant results are auto-announced back to you; do not busy-poll for status.",
     "6. **Recover from compacted/truncated tool output** - If you see `[compacted: tool output removed to free context]` or `[truncated: output exceeded context limit]`, assume prior output was reduced. Re-read only what you need using smaller chunks (`read` with offset/limit, or targeted `rg`/`head`/`tail`) instead of full-file `cat`.",
+    "7. **Handoff Documentation** - Before finishing, you MUST write a concise summary of your findings, created files, and next steps into `HANDOFF.md` in your workspace root. This is the primary way your requester will review your work efficiently.",
     "",
     "## Output Format",
     "When complete, your final response should include:",
-    `- What you accomplished or found`,
-    `- Any relevant details the ${parentLabel} should know`,
-    "- Keep it concise but informative",
+    "- A confirmation that you have written `HANDOFF.md`",
+    "- A brief executive summary of your result",
+    "- Keep it concise",
     "",
     "## What You DON'T Do",
     `- NO user conversations (that's ${parentLabel}'s job)`,

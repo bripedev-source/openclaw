@@ -65,15 +65,15 @@ export function createOpenClawTools(options?: {
   const workspaceDir = resolveWorkspaceRoot(options?.workspaceDir);
   const imageTool = options?.agentDir?.trim()
     ? createImageTool({
-        config: options?.config,
-        agentDir: options.agentDir,
-        workspaceDir,
-        sandbox:
-          options?.sandboxRoot && options?.sandboxFsBridge
-            ? { root: options.sandboxRoot, bridge: options.sandboxFsBridge }
-            : undefined,
-        modelHasVision: options?.modelHasVision,
-      })
+      config: options?.config,
+      agentDir: options.agentDir,
+      workspaceDir,
+      sandbox:
+        options?.sandboxRoot && options?.sandboxFsBridge
+          ? { root: options.sandboxRoot, bridge: options.sandboxFsBridge }
+          : undefined,
+      modelHasVision: options?.modelHasVision,
+    })
     : null;
   const webSearchTool = createWebSearchTool({
     config: options?.config,
@@ -86,17 +86,17 @@ export function createOpenClawTools(options?: {
   const messageTool = options?.disableMessageTool
     ? null
     : createMessageTool({
-        agentAccountId: options?.agentAccountId,
-        agentSessionKey: options?.agentSessionKey,
-        config: options?.config,
-        currentChannelId: options?.currentChannelId,
-        currentChannelProvider: options?.agentChannel,
-        currentThreadTs: options?.currentThreadTs,
-        replyToMode: options?.replyToMode,
-        hasRepliedRef: options?.hasRepliedRef,
-        sandboxRoot: options?.sandboxRoot,
-        requireExplicitTarget: options?.requireExplicitMessageTarget,
-      });
+      agentAccountId: options?.agentAccountId,
+      agentSessionKey: options?.agentSessionKey,
+      config: options?.config,
+      currentChannelId: options?.currentChannelId,
+      currentChannelProvider: options?.agentChannel,
+      currentThreadTs: options?.currentThreadTs,
+      replyToMode: options?.replyToMode,
+      hasRepliedRef: options?.hasRepliedRef,
+      sandboxRoot: options?.sandboxRoot,
+      requireExplicitTarget: options?.requireExplicitMessageTarget,
+    });
   const tools: AnyAgentTool[] = [
     createBrowserTool({
       sandboxBridgeUrl: options?.sandboxBrowserBridgeUrl,

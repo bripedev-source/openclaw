@@ -69,10 +69,13 @@ function mergeProviders(params: {
   return out;
 }
 
+import { resolveConfigEnvVars } from "../infra/env-substitution.js";
+
 async function readJson(pathname: string): Promise<unknown> {
   try {
     const raw = await fs.readFile(pathname, "utf8");
-    return JSON.parse(raw) as unknown;
+    const parsed = JSON.parse(raw);
+    return resolveConfigEnvVars(parsed);
   } catch {
     return null;
   }

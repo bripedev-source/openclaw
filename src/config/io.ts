@@ -30,7 +30,7 @@ import {
   MissingEnvVarError,
   containsEnvVarReference,
   resolveConfigEnvVars,
-} from "./env-substitution.js";
+} from "../infra/env-substitution.js";
 import { applyConfigEnvVars } from "./env-vars.js";
 import { ConfigIncludeError, resolveConfigIncludes } from "./includes.js";
 import { findLegacyConfigIssues } from "./legacy.js";
@@ -47,7 +47,7 @@ import { compareOpenClawVersions } from "./version.js";
 
 // Re-export for backwards compatibility
 export { CircularIncludeError, ConfigIncludeError } from "./includes.js";
-export { MissingEnvVarError } from "./env-substitution.js";
+export { MissingEnvVarError } from "../infra/env-substitution.js";
 
 const SHELL_ENV_EXPECTED_KEYS = [
   "OPENAI_API_KEY",
@@ -954,12 +954,12 @@ export function createConfigIO(overrides: ConfigIoDeps = {}) {
       watchMode: deps.env.OPENCLAW_WATCH_MODE === "1",
       watchSession:
         typeof deps.env.OPENCLAW_WATCH_SESSION === "string" &&
-        deps.env.OPENCLAW_WATCH_SESSION.trim().length > 0
+          deps.env.OPENCLAW_WATCH_SESSION.trim().length > 0
           ? deps.env.OPENCLAW_WATCH_SESSION.trim()
           : null,
       watchCommand:
         typeof deps.env.OPENCLAW_WATCH_COMMAND === "string" &&
-        deps.env.OPENCLAW_WATCH_COMMAND.trim().length > 0
+          deps.env.OPENCLAW_WATCH_COMMAND.trim().length > 0
           ? deps.env.OPENCLAW_WATCH_COMMAND.trim()
           : null,
       existsBefore: snapshot.exists,

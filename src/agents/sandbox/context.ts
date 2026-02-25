@@ -6,7 +6,7 @@ import { loadConfig } from "../../config/config.js";
 import { defaultRuntime } from "../../runtime.js";
 import { resolveUserPath } from "../../utils.js";
 import { syncSkillsToWorkspace } from "../skills.js";
-import { DEFAULT_AGENT_WORKSPACE_DIR } from "../workspace.js";
+import { DEFAULT_AGENT_WORKSPACE_DIR, resolveSessionWorkspaceDir } from "../workspace.js";
 import { ensureSandboxBrowser } from "./browser.js";
 import { resolveSandboxConfigForAgent } from "./config.js";
 import { ensureSandboxContainer } from "./docker.js";
@@ -31,7 +31,7 @@ async function ensureSandboxWorkspaceLayout(params: {
   const { cfg, rawSessionKey } = params;
 
   const agentWorkspaceDir = resolveUserPath(
-    params.workspaceDir?.trim() || DEFAULT_AGENT_WORKSPACE_DIR,
+    params.workspaceDir?.trim() || resolveSessionWorkspaceDir(rawSessionKey),
   );
   const workspaceRoot = resolveUserPath(cfg.workspaceRoot);
   const scopeKey = resolveSandboxScopeKey(cfg.scope, rawSessionKey);
@@ -114,19 +114,19 @@ export async function resolveSandboxContext(params: {
 
   const bridgeAuth = cfg.browser.enabled
     ? await (async () => {
-        // Sandbox browser bridge server runs on a loopback TCP port; always wire up
-        // the same auth that loopback browser clients will send (token/password).
-        const cfgForAuth = params.config ?? loadConfig();
-        let browserAuth = resolveBrowserControlAuth(cfgForAuth);
-        try {
-          const ensured = await ensureBrowserControlAuth({ cfg: cfgForAuth });
-          browserAuth = ensured.auth;
-        } catch (error) {
-          const message = error instanceof Error ? error.message : JSON.stringify(error);
-          defaultRuntime.error?.(`Sandbox browser auth ensure failed: ${message}`);
-        }
-        return browserAuth;
-      })()
+      // Sandbox browser bridge server runs on a loopback TCP port; always wire up
+      // the same auth that loopback browser clients will send (token/password).
+      const cfgForAuth = params.config ?? loadConfig();
+      let browserAuth = resolveBrowserControlAuth(cfgForAuth);
+      try {
+        const ensured = await ensureBrowserControlAuth({ cfg: cfgForAuth });
+        browserAuth = ensured.auth;
+      } catch (error) {
+        const message = error instanceof Error ? error.message : JSON.stringify(error);
+        defaultRuntime.error?.(`Sandbox browser auth ensure failed: ${message}`);
+      }
+      return browserAuth;
+    })()
     : undefined;
   const browser = await ensureSandboxBrowser({
     scopeKey,

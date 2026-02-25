@@ -202,9 +202,9 @@ export const telegramPlugin: ChannelPlugin<ResolvedTelegramAccount, TelegramProb
       const next =
         accountId !== DEFAULT_ACCOUNT_ID
           ? migrateBaseNameToDefaultAccount({
-              cfg: namedConfig,
-              channelKey: "telegram",
-            })
+            cfg: namedConfig,
+            channelKey: "telegram",
+          })
           : namedConfig;
       if (accountId === DEFAULT_ACCOUNT_ID) {
         return {
@@ -289,6 +289,23 @@ export const telegramPlugin: ChannelPlugin<ResolvedTelegramAccount, TelegramProb
         silent: silent ?? undefined,
         isAnonymous: isAnonymous ?? undefined,
       }),
+  },
+  heartbeat: {
+    resolvePrompt: async ({ to, threadId, basePrompt }) => {
+      const { getTopicMetadata } = await import("../../../src/telegram/topic-store.js");
+      const meta =
+        threadId != null ? getTopicMetadata(to.replace(/^(telegram|tg):/i, ""), threadId) : undefined;
+
+      let enriched = basePrompt;
+      if (meta?.name) {
+        enriched += `\n\nContext: You are in the topic "${meta.name}".`;
+      }
+      if (meta?.systemPrompt) {
+        enriched += `\n\nAutonomy Info (Topic Persona):\n${meta.systemPrompt}`;
+      }
+
+      return enriched;
+    },
   },
   status: {
     defaultRuntime: {

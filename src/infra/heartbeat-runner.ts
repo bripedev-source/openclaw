@@ -182,9 +182,9 @@ export function resolveHeartbeatSummaryForAgent(
   const ackMaxChars = Math.max(
     0,
     merged?.ackMaxChars ??
-      defaults?.ackMaxChars ??
-      overrides?.ackMaxChars ??
-      DEFAULT_HEARTBEAT_ACK_MAX_CHARS,
+    defaults?.ackMaxChars ??
+    overrides?.ackMaxChars ??
+    DEFAULT_HEARTBEAT_ACK_MAX_CHARS,
   );
 
   return {
@@ -250,8 +250,8 @@ function resolveHeartbeatAckMaxChars(cfg: OpenClawConfig, heartbeat?: HeartbeatC
   return Math.max(
     0,
     heartbeat?.ackMaxChars ??
-      cfg.agents?.defaults?.heartbeat?.ackMaxChars ??
-      DEFAULT_HEARTBEAT_ACK_MAX_CHARS,
+    cfg.agents?.defaults?.heartbeat?.ackMaxChars ??
+    DEFAULT_HEARTBEAT_ACK_MAX_CHARS,
   );
 }
 
@@ -558,10 +558,10 @@ export async function runHeartbeatOnce(opts: {
   const visibility =
     delivery.channel !== "none"
       ? resolveHeartbeatVisibility({
-          cfg,
-          channel: delivery.channel,
-          accountId: delivery.accountId,
-        })
+        cfg,
+        channel: delivery.channel,
+        accountId: delivery.accountId,
+      })
       : { showOk: false, showAlerts: true, useIndicator: true };
   const { sender } = resolveHeartbeatSenderContext({ cfg, entry, delivery });
   const responsePrefix = resolveEffectiveMessagesConfig(cfg, agentId, {
@@ -590,17 +590,34 @@ export async function runHeartbeatOnce(opts: {
     .map((event) => event.text);
   const hasExecCompletion = pendingEvents.some(isExecCompletionEvent);
   const hasCronEvents = cronEvents.length > 0;
-  const prompt = hasExecCompletion
+  let prompt = hasExecCompletion
     ? EXEC_EVENT_PROMPT
     : hasCronEvents
       ? buildCronEventPrompt(cronEvents)
       : resolveHeartbeatPrompt(cfg, heartbeat);
+
+  if (delivery.channel !== "none") {
+    const plugin = await getChannelPlugin(delivery.channel);
+    if (plugin?.heartbeat?.resolvePrompt && delivery.to) {
+      prompt = await plugin.heartbeat.resolvePrompt({
+        cfg,
+        accountId: delivery.accountId,
+        to: delivery.to,
+        threadId: delivery.threadId,
+        basePrompt: prompt,
+      });
+    }
+  }
+
   const ctx = {
     Body: appendCronStyleCurrentTimeLine(prompt, cfg, startedAt),
     From: sender,
-    To: sender,
+    To: delivery.to,
     Provider: hasExecCompletion ? "exec-event" : hasCronEvents ? "cron-event" : "heartbeat",
+    Channel: delivery.channel !== "none" ? delivery.channel : undefined,
+    AccountId: delivery.accountId,
     SessionKey: sessionKey,
+    MessageThreadId: delivery.threadId,
   };
   if (!visibility.showAlerts && !visibility.showOk && !visibility.useIndicator) {
     emitHeartbeatEvent({
@@ -765,9 +782,9 @@ export async function runHeartbeatOnce(opts: {
     // Reasoning payloads are text-only; any attachments stay on the main reply.
     const previewText = shouldSkipMain
       ? reasoningPayloads
-          .map((payload) => payload.text)
-          .filter((text): text is string => Boolean(text?.trim()))
-          .join("\n")
+        .map((payload) => payload.text)
+        .filter((text): text is string => Boolean(text?.trim()))
+        .join("\n")
       : normalized.text;
 
     if (delivery.channel === "none" || !delivery.to) {
@@ -839,11 +856,11 @@ export async function runHeartbeatOnce(opts: {
         ...(shouldSkipMain
           ? []
           : [
-              {
-                text: normalized.text,
-                mediaUrls,
-              },
-            ]),
+            {
+              text: normalized.text,
+              mediaUrls,
+            },
+          ]),
       ],
       deps: opts.deps,
     });

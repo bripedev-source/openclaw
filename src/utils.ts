@@ -1,3 +1,4 @@
+import crypto from "node:crypto";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -395,6 +396,21 @@ export function formatTerminalLink(
     return opts?.fallback ?? `${safeLabel} (${safeUrl})`;
   }
   return `\u001b]8;;${safeUrl}\u0007${safeLabel}\u001b]8;;\u0007`;
+}
+
+export function hashSha256(value: string): string {
+  return crypto.createHash("sha256").update(value).digest("hex");
+}
+
+export function slugifySessionKey(value: string) {
+  const trimmed = value.trim() || "session";
+  const hash = hashSha256(trimmed).slice(0, 8);
+  const safe = trimmed
+    .toLowerCase()
+    .replace(/[^a-z0-9._-]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+  const base = safe.slice(0, 32) || "session";
+  return `${base}-${hash}`;
 }
 
 // Configuration root; can be overridden via OPENCLAW_STATE_DIR.

@@ -4,7 +4,7 @@ import path from "node:path";
 import { resolveRequiredHomeDir } from "../infra/home-dir.js";
 import { runCommandWithTimeout } from "../process/exec.js";
 import { isCronSessionKey, isSubagentSessionKey } from "../routing/session-key.js";
-import { resolveUserPath } from "../utils.js";
+import { resolveUserPath, slugifySessionKey } from "../utils.js";
 import { resolveWorkspaceTemplateDir } from "./workspace-templates.js";
 
 export function resolveDefaultAgentWorkspaceDir(
@@ -20,6 +20,18 @@ export function resolveDefaultAgentWorkspaceDir(
 }
 
 export const DEFAULT_AGENT_WORKSPACE_DIR = resolveDefaultAgentWorkspaceDir();
+
+export function resolveSessionWorkspaceDir(
+  sessionKey: string | undefined | null,
+  baseDir: string = DEFAULT_AGENT_WORKSPACE_DIR,
+): string {
+  const raw = (sessionKey ?? "").trim();
+  if (!raw || !isSubagentSessionKey(raw)) {
+    return baseDir;
+  }
+  const slug = slugifySessionKey(raw);
+  return path.join(baseDir, "sessions", slug);
+}
 export const DEFAULT_AGENTS_FILENAME = "AGENTS.md";
 export const DEFAULT_SOUL_FILENAME = "SOUL.md";
 export const DEFAULT_TOOLS_FILENAME = "TOOLS.md";
@@ -207,7 +219,7 @@ async function writeWorkspaceOnboardingState(
     await fs.writeFile(tmpPath, payload, { encoding: "utf-8" });
     await fs.rename(tmpPath, statePath);
   } catch (err) {
-    await fs.unlink(tmpPath).catch(() => {});
+    await fs.unlink(tmpPath).catch(() => { });
     throw err;
   }
 }
@@ -399,7 +411,7 @@ async function resolveMemoryBootstrapEntries(
     let key = entry.filePath;
     try {
       key = await fs.realpath(entry.filePath);
-    } catch {}
+    } catch { }
     if (seen.has(key)) {
       continue;
     }
@@ -416,35 +428,35 @@ export async function loadWorkspaceBootstrapFiles(dir: string): Promise<Workspac
     name: WorkspaceBootstrapFileName;
     filePath: string;
   }> = [
-    {
-      name: DEFAULT_AGENTS_FILENAME,
-      filePath: path.join(resolvedDir, DEFAULT_AGENTS_FILENAME),
-    },
-    {
-      name: DEFAULT_SOUL_FILENAME,
-      filePath: path.join(resolvedDir, DEFAULT_SOUL_FILENAME),
-    },
-    {
-      name: DEFAULT_TOOLS_FILENAME,
-      filePath: path.join(resolvedDir, DEFAULT_TOOLS_FILENAME),
-    },
-    {
-      name: DEFAULT_IDENTITY_FILENAME,
-      filePath: path.join(resolvedDir, DEFAULT_IDENTITY_FILENAME),
-    },
-    {
-      name: DEFAULT_USER_FILENAME,
-      filePath: path.join(resolvedDir, DEFAULT_USER_FILENAME),
-    },
-    {
-      name: DEFAULT_HEARTBEAT_FILENAME,
-      filePath: path.join(resolvedDir, DEFAULT_HEARTBEAT_FILENAME),
-    },
-    {
-      name: DEFAULT_BOOTSTRAP_FILENAME,
-      filePath: path.join(resolvedDir, DEFAULT_BOOTSTRAP_FILENAME),
-    },
-  ];
+      {
+        name: DEFAULT_AGENTS_FILENAME,
+        filePath: path.join(resolvedDir, DEFAULT_AGENTS_FILENAME),
+      },
+      {
+        name: DEFAULT_SOUL_FILENAME,
+        filePath: path.join(resolvedDir, DEFAULT_SOUL_FILENAME),
+      },
+      {
+        name: DEFAULT_TOOLS_FILENAME,
+        filePath: path.join(resolvedDir, DEFAULT_TOOLS_FILENAME),
+      },
+      {
+        name: DEFAULT_IDENTITY_FILENAME,
+        filePath: path.join(resolvedDir, DEFAULT_IDENTITY_FILENAME),
+      },
+      {
+        name: DEFAULT_USER_FILENAME,
+        filePath: path.join(resolvedDir, DEFAULT_USER_FILENAME),
+      },
+      {
+        name: DEFAULT_HEARTBEAT_FILENAME,
+        filePath: path.join(resolvedDir, DEFAULT_HEARTBEAT_FILENAME),
+      },
+      {
+        name: DEFAULT_BOOTSTRAP_FILENAME,
+        filePath: path.join(resolvedDir, DEFAULT_BOOTSTRAP_FILENAME),
+      },
+    ];
 
   entries.push(...(await resolveMemoryBootstrapEntries(resolvedDir)));
 

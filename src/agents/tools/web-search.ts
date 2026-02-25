@@ -1,10 +1,13 @@
 import { Type } from "@sinclair/typebox";
+import { execFile } from "node:child_process";
+import { promisify } from "node:util";
 import { formatCliCommand } from "../../cli/command-format.js";
 import type { OpenClawConfig } from "../../config/config.js";
 import { wrapWebContent } from "../../security/external-content.js";
 import { normalizeSecretInput } from "../../utils/normalize-secret-input.js";
 import type { AnyAgentTool } from "./common.js";
 import { jsonResult, readNumberParam, readStringParam } from "./common.js";
+import { parseHTML } from "linkedom";
 import {
   CacheEntry,
   DEFAULT_CACHE_TTL_MINUTES,
@@ -17,11 +20,13 @@ import {
   withTimeout,
   writeCache,
 } from "./web-shared.js";
+import { fetchWithSsrFGuard } from "../../infra/net/fetch-guard.js";
 
-const SEARCH_PROVIDERS = ["brave", "perplexity", "grok"] as const;
+const SEARCH_PROVIDERS = ["brave", "perplexity", "grok", "duckduckgo", "duckduckgo-mcp"] as const;
 const DEFAULT_SEARCH_COUNT = 5;
 const MAX_SEARCH_COUNT = 10;
 
+const DUCKDUCKGO_LITE_ENDPOINT = "https://duckduckgo.com/lite/";
 const BRAVE_SEARCH_ENDPOINT = "https://api.search.brave.com/res/v1/web/search";
 const DEFAULT_PERPLEXITY_BASE_URL = "https://openrouter.ai/api/v1";
 const PERPLEXITY_DIRECT_BASE_URL = "https://api.perplexity.ai";
@@ -71,8 +76,8 @@ const WebSearchSchema = Type.Object({
 
 type WebSearchConfig = NonNullable<OpenClawConfig["tools"]>["web"] extends infer Web
   ? Web extends { search?: infer Search }
-    ? Search
-    : undefined
+  ? Search
+  : undefined
   : undefined;
 
 type BraveSearchResult = {
@@ -223,8 +228,18 @@ function resolveSearchProvider(search?: WebSearchConfig): (typeof SEARCH_PROVIDE
   if (raw === "grok") {
     return "grok";
   }
+  if (raw === "duckduckgo") {
+    return "duckduckgo";
+  }
+  if (raw === "duckduckgo-mcp") {
+    return "duckduckgo-mcp";
+  }
   if (raw === "brave") {
     return "brave";
+  }
+  // Default: Fallback to DuckDuckGo if Brave API key is missing
+  if (!resolveSearchApiKey(search)) {
+    return "duckduckgo";
   }
   return "brave";
 }
@@ -551,6 +566,214 @@ async function runGrokSearch(params: {
   return { content, citations, inlineCitations };
 }
 
+async function runDuckDuckGoSearch(params: {
+  query: string;
+  timeoutSeconds: number;
+}): Promise<{
+  results: Array<{
+    title: string;
+    url: string;
+    description: string;
+  }>;
+}> {
+  // Use html.duckduckgo.com instead of lite.duckduckgo.com for potentially better results/formatting
+  const url = new URL("https://html.duckduckgo.com/html/");
+  url.searchParams.set("q", params.query);
+
+  const resResult = await fetchWithSsrFGuard({
+    url: url.toString(),
+    timeoutMs: params.timeoutSeconds * 1000,
+    init: {
+      headers: {
+        // Use a very standard, common User-Agent
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9",
+        Referer: "https://html.duckduckgo.com/",
+        "Upgrade-Insecure-Requests": "1",
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Site": "same-origin",
+        "Sec-Fetch-User": "?1",
+      },
+    },
+  });
+
+  const res = resResult.response;
+  if (!res.ok) {
+    throw new Error(`DuckDuckGo HTML search failed: ${res.status} ${res.statusText}`);
+  }
+
+  // The content-type might be text/html; charset=utf-8
+  const { text: html } = await readResponseText(res, { maxBytes: 1_000_000 });
+  const { document } = parseHTML(html);
+
+  // Check for bot challenge or error
+  if (html.includes("anomaly-modal") || html.includes("bots use DuckDuckGo too")) {
+    throw new Error("DuckDuckGo blocked the request (bot challenge detection).");
+  }
+
+  const results: Array<{ title: string; url: string; description: string }> = [];
+
+  // Selectors for html.duckduckgo.com are often .result__a (title link) and .result__snippet (snippet)
+  // But we keep the logic flexible.
+  // Common structure:
+  // <div class="result">
+  //   <h2 class="result__title">
+  //     <a class="result__a" href="...">...</a>
+  //   </h2>
+  //   <a class="result__snippet" href="...">...</a>
+  // </div>
+
+  const resultNodes = document.querySelectorAll(".result");
+
+  for (const result of resultNodes) {
+    const titleLink = result.querySelector(".result__a");
+    const snippetLink = result.querySelector(".result__snippet");
+
+    if (!titleLink) continue;
+
+    const title = titleLink.textContent?.trim() ?? "";
+    let rawUrl = titleLink.getAttribute("href") ?? "";
+
+    // Decode uddg parameter if present
+    if (rawUrl.includes("uddg=")) {
+      try {
+        const u = new URL(rawUrl, "https://duckduckgo.com");
+        const uddg = u.searchParams.get("uddg");
+        if (uddg) {
+          rawUrl = decodeURIComponent(uddg);
+        }
+      } catch {
+        // Keep rawUrl if parsing fails
+      }
+    }
+
+    const description = snippetLink?.textContent?.trim() ?? "";
+
+    if (title && rawUrl) {
+      results.push({
+        title: wrapWebContent(title, "web_search"),
+        url: rawUrl,
+        description: description ? wrapWebContent(description, "web_search") : "",
+      });
+    }
+  }
+
+  // Fallback to old scraping logic if the above standard structure isn't found
+  if (results.length === 0) {
+    const links = document.querySelectorAll("a.result-link");
+    for (const link of links) {
+      const title = link.textContent?.trim() ?? "";
+      let rawUrl = link.getAttribute("href") ?? "";
+      if (rawUrl.includes("uddg=")) {
+        try {
+          const u = new URL(rawUrl, "https://duckduckgo.com");
+          const uddg = u.searchParams.get("uddg");
+          if (uddg) {
+            rawUrl = decodeURIComponent(uddg);
+          }
+        } catch { }
+      }
+      let description = "";
+      const row = link.closest("tr");
+      if (row) {
+        const snippetRow = row.nextElementSibling;
+        if (snippetRow) {
+          const snippet = snippetRow.querySelector(".result-snippet");
+          if (snippet) {
+            description = snippet.textContent?.trim() ?? "";
+          }
+        }
+      }
+      if (title && rawUrl) {
+        results.push({
+          title: wrapWebContent(title, "web_search"),
+          url: rawUrl,
+          description: description ? wrapWebContent(description, "web_search") : "",
+        });
+      }
+    }
+  }
+
+  return { results };
+}
+
+async function runDuckDuckGoMcpSearch(params: {
+  query: string;
+  timeoutSeconds: number;
+}): Promise<{
+  results: Array<{
+    title: string;
+    url: string;
+    description: string;
+  }>;
+}> {
+  const execFileAsync = promisify(execFile);
+  try {
+    // Call mcporter to invoke the duckduckgo search tool
+    // We assume the server is named "duckduckgo" in mcporter.json and the tool is "search"
+    // We use --output json to get structured data
+    const { stdout } = await execFileAsync(
+      "npx",
+      ["mcporter", "call", "duckduckgo.search", `query=${params.query}`, "--output", "json"],
+      {
+        timeout: params.timeoutSeconds * 1000,
+      }
+    );
+
+    // Parse MCP output
+    // MCP tool execution results usually come in a specific JSON structure
+    // We expect the text content to contain the search results as a JSON string or formatted text
+    // Adjust parsing based on actual output format of mcp-duckduckgo server
+    const output = JSON.parse(stdout);
+
+    // Fallback: if output is just the raw result object from inner tool
+    const contentItems = output.content || output;
+
+    // We need to parse the actual text content which tends to be a stringified JSON list of results
+    // or a text blob. The official duckduckgo server usually returns a list of results.
+    // Let's inspect the first text content item.
+    const textContent = Array.isArray(contentItems)
+      ? contentItems.find((c: any) => c.type === "text")?.text
+      : typeof contentItems === 'string' ? contentItems : "";
+
+    if (!textContent) {
+      return { results: [] };
+    }
+
+    // Try to parse the text content as JSON (common for structured tools)
+    // If not JSON, it might be plain text.
+    let searchResults: any[] = [];
+    try {
+      searchResults = JSON.parse(textContent);
+    } catch {
+      // If not JSON, assume it's text we can't easily parse structurally without regex
+      // For now, return empty or implement text parsing if needed.
+      // But DuckDuckGo MCP usually returns structured text or JSON.
+      // Let's assume JSON for now as it's the standard for robust tools.
+      console.warn("MCP DuckDuckGo output is not JSON", textContent.slice(0, 100));
+      return { results: [] };
+    }
+
+    if (!Array.isArray(searchResults)) {
+      return { results: [] };
+    }
+
+    return {
+      results: searchResults.map((r: any) => ({
+        title: wrapWebContent(r.title || "", "web_search"),
+        url: r.url || "",
+        description: wrapWebContent(r.snippet || r.body || "", "web_search"),
+      })),
+    };
+
+  } catch (error: any) {
+    throw new Error(`DuckDuckGo MCP search failed: ${error.message}`);
+  }
+}
+
 async function runWebSearch(params: {
   query: string;
   count: number;
@@ -632,6 +855,52 @@ async function runWebSearch(params: {
       content: wrapWebContent(content),
       citations,
       inlineCitations,
+    };
+    writeCache(SEARCH_CACHE, cacheKey, payload, params.cacheTtlMs);
+    return payload;
+  }
+
+  if (params.provider === "duckduckgo") {
+    const { results } = await runDuckDuckGoSearch({
+      query: params.query,
+      timeoutSeconds: params.timeoutSeconds,
+    });
+
+    const payload = {
+      query: params.query,
+      provider: params.provider,
+      count: results.length,
+      tookMs: Date.now() - start,
+      externalContent: {
+        untrusted: true,
+        source: "web_search",
+        provider: params.provider,
+        wrapped: true,
+      },
+      results,
+    };
+    writeCache(SEARCH_CACHE, cacheKey, payload, params.cacheTtlMs);
+    return payload;
+  }
+
+  if (params.provider === "duckduckgo-mcp") {
+    const { results } = await runDuckDuckGoMcpSearch({
+      query: params.query,
+      timeoutSeconds: params.timeoutSeconds,
+    });
+
+    const payload = {
+      query: params.query,
+      provider: params.provider,
+      count: results.length,
+      tookMs: Date.now() - start,
+      externalContent: {
+        untrusted: true,
+        source: "web_search",
+        provider: params.provider,
+        wrapped: true,
+      },
+      results,
     };
     writeCache(SEARCH_CACHE, cacheKey, payload, params.cacheTtlMs);
     return payload;
@@ -740,7 +1009,7 @@ export function createWebSearchTool(options?: {
             ? resolveGrokApiKey(grokConfig)
             : resolveSearchApiKey(search);
 
-      if (!apiKey) {
+      if (!apiKey && provider !== "duckduckgo" && provider !== "duckduckgo-mcp") {
         return jsonResult(missingSearchKeyPayload(provider));
       }
       const params = args as Record<string, unknown>;

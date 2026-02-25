@@ -409,9 +409,9 @@ export async function ensureSandboxContainer(params: {
   let hashMismatch = false;
   let registryEntry:
     | {
-        lastUsedAtMs: number;
-        configHash?: string;
-      }
+      lastUsedAtMs: number;
+      configHash?: string;
+    }
     | undefined;
   if (hasContainer) {
     const registry = await readRegistry();
