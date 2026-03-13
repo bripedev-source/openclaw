@@ -1,0 +1,211 @@
+{
+  "raw_chunks": [
+    {
+      "start_page": 0,
+      "end_page": 7,
+      "response": {
+        "pages": [
+          {
+            "index": 0,
+            "markdown": "\n\n# Building ITACHI: A Complete Technical Blueprint for Local-First AI on Android\n\n**ITACHI is technically feasible** with current open-source technologies. The core AI system using Microsoft BitNet b1.58 2B4T requires only **0.4GB RAM** for inference—making it viable on most modern Android devices. The complete privacy suite leveraging VPN-based tracker blocking, k-anonymity breach checking, and hardware-backed encryption can be implemented without root access on Android 14+. However, the proposed multi-fingerprint authentication and biometric-to-blockchain-key derivation face fundamental Android platform limitations that require architectural workarounds. This report provides implementation guidance for all 20 feature requirements.\n\n---\n\n## On-device LLM: BitNet delivers exceptional mobile efficiency\n\nMicrosoft's **BitNet b1.58 2B4T** represents a breakthrough for mobile AI. This 2.4B parameter model uses ternary weights (-1, 0, +1) requiring only **0.4GB memory**—compared to 2GB+ for equivalent standard models. The efficiency gains are substantial: **1.37-5x faster inference** and **55-70% energy reduction** on ARM processors.\n\n**Critical implementation detail**: BitNet requires `bitnet.cpp` (not standard llama.cpp) to achieve efficiency benefits. The build process involves:\n\n```bash\ngit clone --recursive https://github.com/microsoft/BitNet.git\npip install -r requirements.txt\npython setup_env.py -md models/BitNet-b1.58-2B-4T -q i2_s\n```\n\nFor Termux deployment, compile llama.cpp directly with `pkg install clang cmake git`, then build with `cmake -B build && cmake --build build`. [GitHub]\n(https://gist.github.com/EnigmaCurry/747f3da8a8e8d62fa7849f1beae5c307) The server mode (`llama-server -m model.gguf --host 127.0.0.1`) exposes an OpenAI-compatible API at localhost:8080 for Flutter integration.\n\n**Model recommendations by device RAM**:\n| RAM | Primary Model | Backup Option |\n|----|--------------|--------------|\n| 4GB | BitNet b1.58 2B4T | Qwen2.5-0.5B |\n| 6GB | Qwen2.5-1.5B-Instruct | Gemma 2B |\n| 8GB+ | Phi-3-mini (3.8B) | Llama 3.2 3B |",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2200,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 1,
+            "markdown": "\n\nPerformance benchmarks show **8-12 tokens/second** on Snapdragon 8 Gen 2+ devices with 3B models—sufficient for real-time text generation at human reading speed.\n\n---\n\n## NotebookLM-style knowledge synthesis through local RAG\n\nImplementing NotebookLM functionality locally requires a three-layer architecture: **document processing**, **semantic retrieval**, and **generation synthesis**.\n\nThe document pipeline should chunk text into 256-512 token segments [Medium] (https://devendrayadav2494.medium.com/chunking-embeddings-for-rag-building-smarter-ai-chatbots-28c83ce5fe58) using recursive splitting (prioritizing paragraph → sentence → word boundaries), then embed with **all-MiniLM-L6-v2** (80MB model, excellent quality-to-size ratio). Store vectors in a SQLite-backed Chroma instance [IBM](https://www.ibm.com/think/tutorials/chunking-strategies-for-rag-with-langchain-watsonx-ai) or FAISS with memory mapping.\n\n**Mind map generation** follows this flow: extract entities via LLM prompting → cluster by semantic similarity → build hierarchical structure → identify cross-branch relationships. The `graphview` Flutter package supports multiple layout algorithms including dedicated MindMap mode with expand/collapse animations. [Pub.dev](https://pub.dev/packages/graphview)\n\nFor agentic capabilities, implement the **ReAct pattern** (Reasoning + Acting) [Capabl] (https://capabl.in/blog/agentic-ai-design-patterns-react-rewoo-codeact-and-beyond) with structured output prompting. Small models under 3B parameters struggle with free-form function calling, [BentoML] (https://www.bentoml.com/blog/the-best-open-source-small-language-models) but grammar-constrained generation using llama.cpp's GBNF format forces valid JSON tool responses:\n\n```python\n```\n\n```\n```python\n```\n\n```\n```\n\n```\n```\n\n```\n```\n\n```\n```\n\n```\n```\n\n```\n```\n\n```\n\n```\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n```\n\n",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2200,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 2,
+            "markdown": "\n\n---\n\n## Tracker blocking without root uses local VPN interception\n\nThe **VpnService API** creates a virtual TUN interface intercepting all device traffic without root access. This is the foundation for NetGuard, TrackerControl, and RethinkDNS. [GitHub]\n(https://github.com/M66B/NetGuard/blob/master/README.md)\n\n**Implementation architecture**:\n\n1. `VpnService.Builder` creates local interface at 192.168.x.x\n2. `addRoute(\"0.0.0.0\", 0)` captures all IPv4 traffic\n3. Parse DNS queries from raw packets\n4. Check domain against blocklist (HashMap or Trie for O(1) lookup)\n5. Return NXDOMAIN for blocked domains; forward others normally\n\n**Android 14+ requires explicit foreground service types**. Declare in manifest:\n```xml\n<service android:name=\".VpnService\"\n android:foregroundServiceType=\"specialUse\"\n android:permission=\"android.permission.BIND_VPN_SERVICE\">\n <property android:name=\"android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE\"\n android:value=\"VPN tunnel for privacy protection\"></property>\n</service>\n```\n\nRequest battery optimization exemption programmatically—VPN apps qualify under Google Play policy when core functionality requires continuous operation. Support Android's Always-On VPN via `<meta-data android:name=\"android.net.VpnService.SUPPORTS_ALWAYS_ON\" android:value=\"true\"/>`.\n\n**Blocklist sources**: Combine Steven Black's unified hosts (~130K domains), Disconnect tracker list (used by Firefox), and Exodus Privacy signatures for app-specific trackers. [GitHub]\n(https://github.com/TrackerControl/tracker-control-android/blob/master/README.md) Update weekly via WorkManager background tasks.\n\n**Key limitation**: Only one VPN can be active simultaneously—users running commercial VPNs cannot use local VPN filtering. GitHub offer DNS-over-HTTPS fallback (Android 9+ Private DNS) pointing to AdGuard or NextDNS.\n\n---\n\n## Dark web monitoring with privacy-preserving k-anonymity",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2200,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 3,
+            "markdown": "The **Have I Been Pwned Pwned Passwords API is free and unlimited**—the most important finding for breach detection. It uses k-anonymity: send only the first 5 characters of a SHA-1 password hash, receive ~478 matching suffixes, check locally if full hash exists. Password passwork.pro/blog/private-password-breach-checking/) haveibeenpwned.\n\n```julia\n```\njavascript\nasync function checkPassword(password) {\nconst hash = sha1(password).toUpperCase();\nconst prefix = hash.substring(0, 5);\nconst response = await fetch('https://api.pwnedpasswords.com/range/${prefix});\nconst hashes = (await response.text()).split('\\n');\nreturn hashes.some(line =&gt; line.startsWith(hash.substring(5)));\n}\n```\n\n**Email breach checking** requires paid HIBP API haveibeenpwned (haveibeenpwned.com/api/v3) ($4.50-$326/month depending on rate limits). Proxy through a backend server to protect API keys—the app sends SHA-256 hashed emails, the server maps to actual emails for API queries.\n\n**Alternative breach databases**:\n\n| Service | Records | Pricing | Best For |\n\n| DeHashed | 13B+ | ~$0.02/query | OSINT research |\n\n| Intelligence X | 200B+ | €50+/month | Deep web coverage |\n\n| SpyCloud | 36B+ | Enterprise | Stealer log detection |\n\nFor fully offline breach checking, download the complete Pwned Passwords database (~30GB SHA-1 hashes) using the official PwnedPasswordsDownloader tool. Store as a Bloom filter (3.5GB, 99.9% accuracy) for memory-efficient local lookup. GitHub.\n\n---\n\n## Password manager architecture with hardware-backed encryption\n\nThe **KDBX 4.1 format** (KeePassXC standard) provides a battle-tested architecture: Argon2id key derivation → AES-256-GCM or ChaCha20-Poly1305 encryption → HMAC-SHA256 authentication.\n\n**Recommended Argon2id parameters for mobile**:\n\n- Memory: 64MB (iOS autofill breaks above this)\n- Iterations: 1-3",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2200,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 4,
+            "markdown": "- Parallelism: 4 threads\n- Output: 256-bit key\n\nFor TOTP/HOTP, implement RFC 6238/4226 directly—the algorithm is straightforward HMAC-SHA1 over a counter (time-based or event-based). Store OTP secrets in a **separate encrypted database** from passwords to maintain 2FA security if password database is compromised.\n\n**Android Keystore integration** provides hardware-backed key protection:\n```kotlin\nKeyGenParameterSpec.Builder(\"vault_key\", PURPOSE_ENCRYPT or PURPOSE_DECRYPT)\n.setBlockModes(BLOCK_MODE_GCM)\n.setEncryptionPaddings(ENCRYPTION_PADDING_NONE)\n.setUserAuthenticationRequired(true) // Requires biometric/PIN\n.setInvalidatedByBiometricEnrollment(true) // Detect new fingerprints\n.setIsStrongBoxBacked(true) // Use dedicated secure processor\n.build()\n```\n\nThe **CryptoObject** binding with BiometricPrompt ensures the encryption key is only accessible after successful biometric authentication—preventing bypass attacks.\n\n---\n\n## Multi-fingerprint authentication faces platform limitations\n\n**Android BiometricPrompt cannot distinguish between enrolled fingerprints.** The API returns only success/failure—no fingerprint identifier, no template access. This is a security design: preventing fingerprint harvesting by malicious apps.\n\n**Workaround architectures**:\n\n1. **Sequential authentication with time windows**: Require 3 successful authentications within 10 seconds, with visual indicators for which \"slot\" is being verified. Each authentication unlocks a different Keystore key; combine all 3 keys to derive the final decryption key.\n2. **Multi-factor layering**: Fingerprint + PIN pattern + knowledge question, where the combination is treated as the \"3-factor\" equivalent.\n3. **External hardware** (not recommended): USB fingerprint scanners with custom SDKs can provide template access, but require rooted devices and raise compliance concerns.",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2200,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 5,
+            "markdown": "**Biometric-to-cryptographic-key derivation** (fuzzy extractors) is theoretically possible but impractical on Android. The TEE never exposes raw biometric data—templates are encrypted with device-specific keys and never leave secure hardware. Recent research achieved 105-bit security with iris biometrics using fuzzy extractors, IACR but this required direct sensor access unavailable on standard Android.\n\nThe practical approach: use BiometricPrompt to unlock Android Keystore keys, which then decrypt application-level secrets. This provides hardware-backed security without raw biometric access.\n\n---\n\n## Blockchain identity works best with offline-first DID methods\n\nRunning full blockchain nodes on mobile is impractical. Instead, use **did:peer** for offline peer-to-peer identity and **did:key** for ephemeral identities, with optional on-chain anchoring for revocation checking.\n\n**Recommended identity stack**:\n\n- **DID Method**: did:peer:4 (supports multiple verification methods, fully offline)\n- **Credentials**: W3C Verifiable Credentials Data Model\n- **ZK Proofs**: Groth16 (zk-SNARK) via Polygon ID SDK—proof generation takes &lt;1 second on modern devices\n- **SDK**: Polygon ID Flutter SDK provides complete DID/VC/ZKP functionality\n\n**Zero-knowledge proofs for biometric verification** are feasible using Semaphore protocol or Polygon ID circuits. Rather than proving \"this is my fingerprint,\" prove \"I possess a credential attesting to successful biometric verification\" without revealing the biometric itself.\n\n**Architecture for biometric-blockchain binding**:\n\n1. User authenticates via BiometricPrompt\n2. Successful auth unlocks Keystore-stored DID private key\n3. DID signs attestation: \"Holder authenticated via Class 3 biometric at timestamp T\"\n4. ZKP proves possession of valid attestation without revealing DID or timestamp\n\nThis provides verifiable biometric authentication claims without exposing raw biometric data or requiring on-chain biometric storage.\n\n---\n\n## End-to-end encryption should use Signal Protocol with post-quantum hybrid",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2200,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 6,
+            "markdown": "\n\n**Signal Protocol** (Double Ratchet + X3DH/PQXDH) provides the strongest security guarantees for messaging. The **libsignal** library is production-ready but AGPL-3.0 licensed—requiring open-sourcing modifications.\n\nFor file sharing, implement **capability-based URLs**:\n\n```\n\nhttps://app.example/file/{id}#{base64_key}\n```\n\nThe key in the URL fragment never reaches the server (browsers don't send fragments). The server stores only encrypted blobs; recipients extract keys client-side.\n\n**Government-resistant encryption stack**:\n\n| Layer | Algorithm | Purpose |\n\n|-------|-----------|---------|\n\n| Symmetric | AES-256-GCM | Message/file encryption |\n\n| Key Exchange | X25519 + ML-KEM-768 (hybrid) | Post-quantum protection |\n\n| Signatures | Ed25519 + ML-DSA | Authentication |\n\n| KDF | Argon2id | Password-based keys |\n\n| KDF | HKDF-SHA256 | Key derivation |\n\n**NIST standardized post-quantum algorithms** (August 2024): ML-KEM (Kyber) for key encapsulation, ML-DSA (Dilithium) for signatures. Implement hybrid schemes combining classical (X25519) and post-quantum (Kyber-768) key exchange—if either breaks, the other still protects.\n\n**Metadata protection** options:\n\n- Message padding to fixed sizes (256B, 1KB, 4KB buckets)\n\n- Cover traffic (dummy messages at random intervals)\n\n- Optional Tor integration via Orbot (significant latency impact)\n\n- Signal's Sealed Sender pattern (server sees recipient but not sender)\n\nMatrix Protocol with **vodozemac** (Apache-2.0 licensed, Rust implementation) offers more permissive licensing but weaker metadata protection than Signal.\n\n---\n\n## Flutter architecture for modular security features\n\n**Clean Architecture with feature-first organization** supports 10+ independent modules:\n\n```\n\nlib/",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2200,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 7,
+            "markdown": "\n\n┌── core/ # Shared: encryption, network, DI\n\n┌── features/\n\n│ ├── auth/ # Biometric unlock\n\n│ ├── vault/ # Password manager\n\n│ ├── ai_assistant/ # LLM integration\n\n│ ├── knowledge_graph/ # Mind maps\n\n│ ├── tracker_blocker/ # VPN service\n\n│ └── secure_share/ # E2E file sharing\n\n└── shared/ # Common widgets\n\n```\n\n**State management**: Riverpod 2.x with code generation provides compile-time safety and excellent testability. For stricter separation, BLoC remains the enterprise standard.\n\n**Encrypted storage recommendation**:\n\n1. **Keys**: `flutter_secure_storage` (Android Keystore backend) [Pub.dev]\n\n(https://pub.dev/packages/flutter_secure_storage)\n\n2. **Structured data**: Drift + SQLCipher (`sqlcipher_flutter_libs`) [LogRocket]\n\n(https://blog.logrocket.com/securing-local-storage-flutter/)\n\n3. **Documents**: Encrypted files in app-specific directory\n\n**Native integration for llama.cpp**: Use `dart:ffi` with `ffigen` for type-safe C bindings. [Flutter]\n\n(https://docs.flutter.dev/platform-integration/android/c-interop) [Flutter](https://docs.flutter.dev/platform-integration/ios/c-interop) The `llama_cpp_dart` package provides pre-built bindings. Run inference in Dart Isolates to avoid UI blocking.\n\n**Background services**: Combine `workmanager` for periodic tasks (blocklist updates, breach checking) with `flutter_background_service` for continuous operation (VPN tunnel). [Pub.dev]\n\n(https://pub.dev/packages/workmanager) Android 14+ requires explicit service type declarations.\n\n---\n\n## Essential Flutter packages by category\n\n**Security & Storage**:\n\n- `flutter_secure_storage: ^9.0.0` — Keystore/Keychain access\n- `drift: ^2.15.0` + `sqlcipher_flutter_libs: ^0.6.1` — Encrypted SQLite\n- `local_auth: ^2.2.0` — Biometric authentication\n- `pointycastle: ^3.7.3` + `encrypt: ^5.0.3` — Cryptography\n\n**AI & Knowledge**:",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2200,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [],
+            "header": null,
+            "footer": null
+          }
+        ],
+        "model": "mistral-ocr-latest",
+        "usage_info": {
+          "pages_processed": 8,
+          "doc_size_bytes": 103005
+        },
+        "document_annotation": {
+          "language": "en",
+          "chapter_titles": [
+            "Building ITACHI: A Complete Technical Blueprint for Local-First AI on Android",
+            "On-device LLM: BitNet delivers exceptional mobile efficiency",
+            "NotebookLM-style knowledge synthesis through local RAG",
+            "Tracker blocking without root uses local VPN interception",
+            "Dark web monitoring with privacy-preserving k-anonymity",
+            "Password manager architecture with hardware-backed encryption",
+            "Multi-fingerprint authentication faces platform limitations",
+            "Blockchain identity works best with offline-first DID methods",
+            "End-to-end encryption should use Signal Protocol with post-quantum hybrid",
+            "Flutter architecture for modular security features",
+            "Essential Flutter packages by category"
+          ],
+          "summary": "El document descriu el projecte ITACHI, una aplicació Android que integra intel·ligència artificial local, gestió de contrasenyes segura, bloqueig de rastreadors i altres funcions de privacitat. Utilitza el model BitNet de Microsoft, que és eficient en memòria i ràpid en dispositius mòbils. També implementa un sistema de gestió de contrasenyes amb xifratge de maquinari, bloqueig de rastreadors mitjançant VPN sense arrel, i verificació de filtracions de dades amb k-anonimitat. L'aplicació utilitza una arquitectura modular en Flutter, amb paquets essencials per a seguretat, emmagatzematge, IA i altres funcions. El document proporciona una guia tècnica detallada per a la implementació de totes les funcions proposades."
+        }
+      }
+    },
+    {
+      "start_page": 8,
+      "end_page": 10,
+      "response": {
+        "pages": [
+          {
+            "index": 8,
+            "markdown": "\n\n- `graphview: ^1.2.0` — Mind map visualization (MindMap algorithm)\n- `fleather: ^1.26.0` — Rich text editor (Quill Delta format)\n- `llama_cpp_dart: ^0.4.1` — LLM inference bindings\n- `flutter_markdown: ^0.6.22` — Markdown rendering\n\n**Native Integration**:\n- `workmanager: ^0.5.2` — Background task scheduling\n- `flutter_background_service: ^5.0.5` — Foreground services\n- `mobile_scanner: ^4.0.1` — QR code scanning (OTP import)\n\n---\n\n## Termux integration enables powerful offline AI\n\nCommunication between Flutter and Termux uses three channels:\n\n1. **RUN_COMMAND Intent**: Execute commands via `com.termux.RUN_COMMAND` action (requires `allow-external-apps=true` in `~/.termux/termux.properties`) [GitHub](https://github.com/termux/termux-app/wiki/RUN_COMMAND-Intent)\n\n2. **Shared storage**: `termux-setup-storage` links `~/storage/shared` to device storage for model file exchange [Code4Noobz](https://4noobz.net/local-ai-on-y-android-with-llama-cpp-and-termux/)\n\n3. **Local HTTP**: Run `llama-server` on localhost:8080 for OpenAI-compatible API access\n\n**Termux LLM setup**:\n```bash\npkg update && pkg install clang cmake git\ngit clone https://github.com/ggerganov/llama.cpp && cd llama.cpp\ncmake -B build && cmake --build build --config Release\n./build/bin/llama-server -m model.gguf --host 127.0.0.1 -c 4096\n```\n\nFor GPU acceleration on Qualcomm devices, copy OpenCL libraries from `/vendor/lib64/` and build with `-DGGML_OPENCL=ON`. [GitHub](https://github.com/JackZeng0208/llama.cpp-android-tutorial)\n\n**whisper.cpp** for speech recognition integrates similarly—the `whisper.android` example provides complete Kotlin JNI bindings. The `whisper_kit` Flutter package wraps this for offline transcription.\n\n---",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2200,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 9,
+            "markdown": "\n\n## Open source components to integrate versus build\n\n| Component | Integrate | Build Custom | Rationale |\n\n|----------|----------|------------|----------|\n\n| LLM inference | llama.cpp (MIT) | — | Mature, excellent ARM support |\n\n| Speech recognition | whisper.cpp (MIT) | — | Production-ready |\n\n| Note storage format | — | Obsidian-style markdown | Avoid AGPL, maximum portability |\n\n| Password format | KDBX 4.1 | — | Interoperable, well-documented |\n\n| E2E encryption | Study Signal/Joplin | Custom implementation | Avoid AGPL license issues |\n\n| Tracker blocking | Study TrackerControl | Custom VPN service | Complex VPN code requires customization |\n\n| DID/VC | Polygon ID SDK | — | Complete Flutter support |\n\n**Licensing considerations**: Joplin, Logseq, KeePassXC, and Bitwarden clients use GPL/AGPL—derivative works must be open-sourced. llama.cpp, whisper.cpp, MLC-LLM, and vodozemac use permissive MIT/Apache licenses allowing proprietary use.\n\n---\n\n## Feasibility assessment and implementation roadmap\n\n| Feature | Feasibility | Complexity | Timeline |\n\n|----------|------------|----------|----------|\n\n| BitNet on-device LLM | ✅ High | Medium | 4-6 weeks |\n\n| NotebookLM RAG/synthesis | ✅ High | High | 6-8 weeks |\n\n| MCP-style agentic | ⚠️ Medium | High | 4-6 weeks |\n\n| Tracker blocking (VPN) | ✅ High | High | 6-8 weeks |\n\n| HIBP breach monitoring | ✅ High | Low | 2-3 weeks |\n\n| Password manager | ✅ High | Medium | 4-6 weeks |\n\n| TOTP aggregation | ✅ High | Low | 1-2 weeks |\n\n| Multi-fingerprint auth | ⚠️ Limited | Medium | 2-3 weeks (workaround) |\n\n| Biometric-to-key derivation | ❌ Not practical | N/A | Use Keystore binding instead |\n\n| Blockchain DID | ✅ High | Medium | 4-6 weeks |\n\n| ZKP biometric verification | ⚠️ Medium | High | 6-8 weeks |\n\n| E2E encrypted sharing | ✅ High | High | 6-8 weeks |\n\n| Post-quantum crypto | ✅ High | Medium | 2-4 weeks |\n\n| Flutter architecture | ✅ High | Medium | Ongoing |\n\n**Total estimated development**: 9-12 months for full feature set with a small team.\n\n**Critical success factors**:\n\n- Target devices with 6GB+ RAM for optimal LLM performance",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2200,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 10,
+            "markdown": "- Implement Termux integration as optional enhancement (some users won't install)\n- Prioritize offline-first: all core features must work without network\n- Use hardware-backed security (Android Keystore, StrongBox) for all sensitive keys\n- Provide clear user education on platform limitations (VPN exclusivity, biometric constraints)\n\n---\n\n## Conclusion\n\nITACHI represents an ambitious but achievable vision for local-first AI with comprehensive privacy protection. The technical foundation exists: BitNet enables efficient on-device inference, Android's VpnService provides tracker blocking without root, HIBP's k-anonymity API enables privacy-preserving breach detection, and mature cryptographic libraries support government-resistant encryption.\n\nThe primary architectural challenge is Android's biometric security model—designed to prevent exactly the fingerprint template access ITACHI envisions. The workaround (biometric-bound Keystore keys) provides equivalent security guarantees through a different mechanism.\n\nFor blockchain identity, skip full node operation entirely—offline DID methods (did:peer) combined with ZK proofs provide verifiable identity without continuous blockchain interaction.\n\nThe recommended implementation order: (1) encrypted storage foundation, (2) password manager with biometric unlock, (3) on-device LLM integration, (4) knowledge synthesis features, (5) tracker blocking, (6) breach monitoring, (7) E2E encrypted sharing, (8) DID/blockchain identity. This progression builds core security infrastructure before adding advanced features.",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2200,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [],
+            "header": null,
+            "footer": null
+          }
+        ],
+        "model": "mistral-ocr-latest",
+        "usage_info": {
+          "pages_processed": 3,
+          "doc_size_bytes": 103005
+        },
+        "document_annotation": {
+          "language": "en",
+          "chapter_titles": [
+            "Termux integration enables powerful offline AI",
+            "Open source components to integrate versus build",
+            "Feasibility assessment and implementation roadmap",
+            "Conclusion"
+          ],
+          "summary": "El document descriu un projecte anomenat ITACHI que pretén crear una aplicació d'intel·ligència artificial local amb protecció de la privadesa. Explica l'integració amb Termux per a la inferència d'IA fora de línia, els components de codi obert a integrar o construir, una avaluació de la viabilitat i un calendari d'implementació per a diverses característiques, i conclou amb els factors clau del èxit i l'ordre recomanat d'implementació. El projecte pretén oferir funcions com a gestió de contrasenyes, bloqueig de rastreadors, monitorització de filtracions, compartimentació encriptada de punt a punt i identitat basada en blockchain, amb èmfasi en la primera local i la seguretat de les dades."
+        }
+      }
+    }
+  ]
+}

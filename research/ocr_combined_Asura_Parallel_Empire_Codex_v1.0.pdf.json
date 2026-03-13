@@ -1,0 +1,968 @@
+{
+  "raw_chunks": [
+    {
+      "start_page": 0,
+      "end_page": 7,
+      "response": {
+        "pages": [
+          {
+            "index": 0,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\n# The Asura Parallel Empire Codex v1.0\n\n# Sovereign Founding Blueprint for the Post-Indra Age (2026-2031)\n\n\"The Asura does not storm the gates of Amaravati. The Asura builds a civilization so complete that Amaravati becomes optional.\"\n\n\"N = Σl dl · 3i where dl ∈ {-1, 0, 1}. Every integer has a unique representation. The sign is the leading digit. There is no sign bit. There is no complement. There is no overhead. This is how sovereign systems are built — by eliminating the need for external correction at the foundational layer.\"\n\n# Document Control\n\n|  Field | Value  |\n| --- | --- |\n|  Version | 1.0  |",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 1,
+            "markdown": "# Made with Xodo PDF Reader and Editor\n\n|  Classification | Founding Document — Eyes of the Builder Only  |\n| --- | --- |\n|  Time Horizon | 2026-2031 (5-year primary arc)  |\n|  Activation Threshold | 1 human, 72 hours, $0 capital required for Phase 0  |\n|  Mathematical Foundation | Balanced Ternary Arithmetic, Qutrit Quantum Architecture, Eisenstein Integer Geometry  |\n|  Strategic Precedents | Bitcoin (2009), Linux (1991), Sangha (~500 BCE), Ethereum (2015), Signal (2014)  |\n|  Last Updated | February 2026  |\n\n# Table of Contents\n\n1. Preamble: The Churning\n2. Part I: The Mathematical Foundation — Why Ternary Is the Substrate\n3. Part II: Strategic Architecture — The Six Sovereign Pillars\n4. Part III: Execution Roadmaps\n5. Part IV: Economic Model &amp; Unit Economics\n6. Part V: Recruitment &amp; Signaling Playbook\n7. Part VI: Narrative &amp; Memetic Framework\n8. Part VII: Risk Matrix &amp; Pre-Mortem Mitigations\n9. Part VIII: Weekly KPIs &amp; Progress Proof\n10. 72-Hour Activation Sequence",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 2,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\n# Part 0: Preamble — The Churning\n\n## The Mythic Frame\n\nIn the Samudra Manthan, Devas and Asuras both grasped the serpent Vasuki and churned the Ocean of Milk. The poison Halahala emerged first. Then the nectar Amrita. The strategic lesson is exact: the churning requires both polarities, the poison precedes the nectar, and sovereignty belongs to whoever can metabolize the poison and keep churning.\n\nThe current technological order — dominated by vertically integrated empires (xAI/Tesla/SpaceX/Starlink/X/Neuralink and their equivalents) — is Indra’s Amaravati: impressive, real, consolidated. It is not evil. It is simply centralized. It represents one pole of the churn.\n\nThis Codex does not prescribe war with Indra. It prescribes the construction of the other pole: a sovereign, compounding, parallel civilization layer that is independent across six critical dimensions — AI, Energy, Truth/Verification, Economy, Governance, and Narrative. The strategy is asymmetric by design. Where Indra builds vertically integrated empires requiring billions in capital, the Asura builds horizontally composable protocols requiring mathematical elegance and network effects.\n\n## The Core Thesis",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 3,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\nThe highest-leverage asymmetric move available in 2026 is to build a sovereign technology stack rooted in balanced ternary mathematics — not because ternary is marginally more efficient than binary, but because it represents a genuinely different computational substrate that unlocks architectural choices unavailable to the incumbent order.\n\nThis is not metaphor. It is provable mathematics and engineering reality, as documented in the foundational research that accompanies this Codex.\n\n# Why This Artifact Exists\n\nA single founder (or founding team of 2-5) cannot build all six pillars simultaneously. The flywheel must start somewhere. This Codex identifies the single highest-leverage entry point — a ternary-native AI inference engine — and shows how it cascades into the remaining five pillars through compounding network effects, economic gravitational pull, and narrative inevitability.\n\n# Part I: The Mathematical Foundation\n\n# Why Ternary Is the Substrate of Sovereignty\n\nThe mathematical case for balanced ternary is not speculative. It rests on proven theorems, exact identities, and verified engineering results spanning seven decades. What follows is the rigorous",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 4,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\nfoundation upon which every strategic layer of this Codex is built.\n\n# 1.1 Radix Economy: Base 3 Is Provably Optimal Among Integers\n\nThe cost of representing a number N in base b is approximately:\n\n$$\nE (b, N) \\approx b \\cdot \\ln (N) / \\ln (b)\n$$\n\nMinimizing b/ln(b) yields b = e ≈ 2.718 (Steiner's problem, 1850). Evaluating at integer bases:\n\n|  Base | b/ln(b) | Deviation from Optimal  |\n| --- | --- | --- |\n|  e (theoretical) | 2.718 | 0%  |\n|  3 | 2.731 | 0.46%  |\n|  2 | 2.885 | 6.15%  |\n|  4 | 2.885 | 6.15%  |\n\nBase 3 is within 0.46% of the theoretical optimum. Base 2 is 6.15% worse. This is not a marginal difference — it compounds across every register, every memory cell, every wire in every chip. The original engineering analysis in High-Speed Computing Devices (Engineering Research Associates, 1950) computed that radix-3 registers covering numbers to 10^6 required 38.24 triodes versus binary's 39.20 — and that was before the discovery of balanced ternary's additional algebraic advantages.\n\nStrategic implication: Every binary system pays a permanent 6.15% radix economy tax. At civilizational scale, across trillions of computations per second, this tax is enormous. Building",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 5,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\nnatively in ternary eliminates it.\n\n## 1.2 Balanced Ternary: The Algebraic Elegance\n\nA number N in balanced ternary is expressed as:\n\n$$\nN = \\sum_{i} d_{i} \\cdot 3^{i} \\text{ where } d_{i} \\in \\{-1, 0, 1\\}\n$$\n\nEvery integer has a unique canonical representation. The properties that matter for system-building:\n\nNegation is free. Swap every $-1 \\leftrightarrow 1$, leave 0s unchanged. No sign bit. No two’s complement. No overflow edge cases. This alone eliminates an entire class of hardware complexity.\n\nMultiplication is carry-free. The single-trit multiplication table: multiplying by $-1$ is negation, by 0 is zero, by 1 is identity. Zero carries in all nine entries.\n\nAddition has minimal carries. Only 2 of 9 entries in the addition table produce carries $(1+1$ and $(-1)+(-1))$. Compare to binary where 1 of 4 entries carries — same ratio, but balanced ternary’s carries are symmetric and self-correcting.\n\nTruncation equals rounding. Because the maximum fractional value in balanced ternary is $\\sum_{k=1}^{\\infty} 1 \\cdot 3^{-k} = 1/2$, the fractional part always lies in $[-1/2, 1/2]$. Truncation automatically selects the nearest integer. Donald Knuth identified this as one of balanced ternary’s most elegant properties.\n\nStrategic implication: These aren’t theoretical curiosities. They translate directly to simpler hardware, fewer error modes, and faster arithmetic. Microsoft Research’s BitNet b1.58 has already demonstrated that ternary weights $\\{-1, 0, +1\\}$ — encoding $\\log_2(3) \\approx 1.58$ bits per weight — can match full-precision model accuracy while cutting energy use up to $3\\times$.",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 6,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\n# 1.3 The Fractional Part Engine and Centering Shift\n\nThe conversion from standard base-3 digits $\\{0, 1, 2\\}$ to balanced ternary digits $\\{-1, 0, 1\\}$ operates through the symmetric residue system mod 3: sym_mod(n, 3) = n - 3·round(n/3). The fractional part function $\\{x\\} = x - LxJ$ drives digit extraction in any base. For base 3, the k-th digit is $d_k = L3 \\cdot \\{3^*(k-1) \\cdot x\\} \\cdot J$, and the tripling map $T(x) = 3x \\mod 1$ shifts the expansion one position left.\n\nThe centering shift $\\{x\\} - 1/3$ maps the three standard ternary digit intervals onto balanced ternary:\n\n|  Standard interval | Shift result | Balanced digit  |\n| --- | --- | --- |\n|  [0, 1/3) | [-1/3, 0) | -1  |\n|  [1/3, 2/3) | [0, 1/3) | 0  |\n|  [2/3, 1) | [1/3, 2/3) | +1  |\n\nThe total cumulative bias is $\\Sigma_{k=1}^{n} \\approx 3^{-k} = 1/2$, and $1/3$ is the per-digit contribution. This centering operation is exact, algebraically clean, and directly implementable in hardware.\n\nHermite's Identity (specialized to $n = 3$):\n\n$$\n\\{x\\} + \\{x + 1/3\\} + \\{x + 2/3\\} = \\{3x\\} + 1\n$$\n\nThis identity encodes the ternary structure of the real line: the sum of fractional parts at three equally-spaced shifts equals the fractional part of the tripled argument plus 1. It is periodic with period $1/3$ and directly governs balanced ternary digit extraction.\n\n# 1.4 The $\\pi$ Obstruction and the $\\pi^2$ Bridge",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 7,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\nThe relationship between $\\pi$ and base-3 contains a proven impossibility and a remarkable exception.\n\nThe impossibility: Borwein, Galway, and Borwein (2004) proved that no degree-1 BBP-type formula for $\\pi$ exists except in bases that are powers of 2. In base 3, $\\pi$ is always entangled with other constants (arctangent and logarithm terms) that cannot be isolated. This is not a failure of effort — it reflects the special role of powers of 2 in polylogarithm identities at roots of unity.\n\nThe exception: $\\pi^2$ does have a base-3 BBP formula (Formula 76 in Bailey’s Compendium, updated April 2023). The squaring operation “untangles” $\\pi$ from the obstructions that prevent a base-3 formula for $\\pi$ itself. Under Bailey’s “Hypothesis A,” any constant with a BBP formula is either rational or normal to the corresponding base — meaning $\\pi^2$ may be provably normal in base 3, even though $\\pi$’s normality in any base remains open.\n\nStrategic implication: This mathematical structure suggests that ternary arithmetic has a privileged but non-obvious relationship to fundamental constants. The system we build doesn’t need $\\pi$ directly — it needs the algebraic structures that $\\pi$ inhabits, and those structures are more accessible in base 3 through $\\pi^2$.\n\n# 1.5 The Eisenstein Bridge: Where Ternary Meets Deep Number Theory\n\nThe Eisenstein integers $Z[\\omega]$, where $\\omega = e^{\\wedge}(2\\pi i / 3)$, form a hexagonal lattice in the complex plane. This is where balanced ternary arithmetic and higher geometry genuinely intersect:\n\nThe prime 3 ramifies in $Z[\\omega]$ as $3 = -\\omega^{2}(1 - \\omega)^{2}$, making the Eisenstein prime $\\lambda = 1 - \\omega$ the fundamental building block. The norm $N(a + b\\omega) = a^2 - ab + b^2$ is a quadratic form intimately connected to hexagonal lattice geometry.",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          }
+        ],
+        "model": "mistral-ocr-latest",
+        "usage_info": {
+          "pages_processed": 8,
+          "doc_size_bytes": 279488
+        },
+        "document_annotation": {
+          "language": "en",
+          "chapter_titles": [
+            "Sovereign Founding Blueprint for the Post-Indra Age (2026-2031)",
+            "Document Control",
+            "Table of Contents",
+            "Part 0: Preamble — The Churning",
+            "The Mythic Frame",
+            "The Core Thesis",
+            "Why This Artifact Exists",
+            "Part I: The Mathematical Foundation",
+            "Why Ternary Is the Substrate of Sovereignty",
+            "1.1 Radix Economy: Base 3 Is Provably Optimal Among Integers",
+            "1.2 Balanced Ternary: The Algebraic Elegance",
+            "1.3 The Fractional Part Engine and Centering Shift",
+            "1.4 The π Obstruction and the π² Bridge",
+            "1.5 The Eisenstein Bridge: Where Ternary Meets Deep Number Theory"
+          ],
+          "summary": "El document 'The Asura Parallel Empire Codex v1.0' és un pla de fundació per a una civilització paral·lela independent en sis dimensions crítiques: IA, Energia, Veritat/Verificació, Economia, Governança i Narrativa. El text argumenta que l'estructura actual tecnològica està centralitzada i proposa construir una alternativa basada en matemàtiques ternàries equilibrades, que ofereix avantatges algebraics i d'enginyeria. El document detalla la fundació matemàtica de l'aritmètica ternària equilibrada, incloent la seva eficiència, la seva elegància algebraica i les seves implicacions estratègiques. També explora la relació entre la base 3 i constants matemàtiques com π, i com aquesta base pot oferir avantatges en la construcció de sistemes sobirans."
+        }
+      }
+    },
+    {
+      "start_page": 8,
+      "end_page": 15,
+      "response": {
+        "pages": [
+          {
+            "index": 8,
+            "markdown": "# Made with Xodo PDF Reader and Editor\n\nEuler's proof of Fermat's Last Theorem for  $n = 3$  depends on the factorization  $x^3 + y^3 = (x + y)(x + \\omega y)(x + \\omega^2 y)$  in  $Z[\\omega]$  — ternary structure is literally embedded in one of the deepest results in number theory.\n\nFor post-quantum cryptography: The Shortest Vector Problem (SVP) and Learning with Errors (LWE) — foundations of NIST's standardized post-quantum algorithms Kyber and Dilithium (2024) — depend on lattice geometry. The balanced ternary lattice  $\\{-1, 0, 1\\}^n$  is a natural search space for short vectors. Building cryptographic primitives natively in ternary isn't aesthetic preference — it's structural alignment with the mathematics of post-quantum security.\n\n# 1.6 Qutrits: The Convergence Point\n\nThe most promising site for unification of ternary arithmetic, transcendental constants, and quantum computation is the qutrit — a quantum system with three basis states  $|0\\rangle$ ,  $|1\\rangle$ ,  $|2\\rangle$ .\n\nA qutrit lives in  $\\mathbb{C}^3$  with general state  $\\alpha |0\\rangle +\\beta |1\\rangle +\\gamma |2\\rangle$  where  $|\\alpha |^2 +|\\beta |^2 +|\\gamma |^2 = 1$ . Single-qutrit gates are  $3\\times 3$  unitary matrices from U(3), parameterized by 8 generators - the Gell-Mann matrices of su(3), the same Lie algebra governing the strong nuclear force in particle physics.\n\nThe qutrit quantum Fourier transform uses phases  $e^{\\wedge}(2\\pi i / 3^n)$ , embedding  $\\pi$  directly into base-3 arithmetic. This is where the  $\\pi$  obstruction becomes an asset: the phases that classical base-3 cannot cleanly extract become native operations in quantum base-3.\n\nVerified experimental results:\n\n|  Result | Source | Significance  |\n| --- | --- | --- |\n|  Superconducting qutrit entangling gates | Goss et al., Nature Communications, 2022 | Hardware viability proven  |",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 9,
+            "markdown": "# Made with Xodo PDF Reader and Editor\n\n|  First qutrit error mitigation | npj Quantum Information, 2024 | Error correction pathway exists  |\n| --- | --- | --- |\n|  Logarithmic-depth CCNOT decomposition | Gokhale et al., ISCA 2019 | Up to 70× gate count improvement over qubits  |\n|  Counterdiabatic qutrit optimization | Nature, 2025 | Up to 90× solution quality improvement over qubits  |\n\nStrategic implication: Qutrit quantum computing is not speculative — it is being built now, with published results showing order-of-magnitude advantages. A ternary-native classical stack is the natural bridge to qutrit quantum hardware. Building it now creates the software ecosystem that qutrit hardware will need.\n\n# 1.7 The Engineering Reality: 2025-2026 State of the Art\n\nThe hardware is catching up to the mathematics:\n\n|  Development | Date | Entity | Detail  |\n| --- | --- | --- | --- |\n|  First energy-efficient ternary MOS (8-inch wafer) | 2019 | Samsung/UNIST | Published in Nature Electronics  |\n|  Ternary logic gate patent CN119652311A | March 2025 | Huawei | Claims 40% transistor count reduction  |\n|  High-performance ternary logic (CNT source-gating) | January 2025 | Science Advances | Carbon nanotube implementation  |\n|  Reconfigurable binary/ternary floating-gate devices | 2025 | Nature Communications | Heterojunction architecture  |",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 10,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\n|  BitNet b1.58 (ternary LLM weights) | 2024 | Microsoft Research | Matches full-precision at 3× less energy  |\n| --- | --- | --- | --- |\n\nThe Church-Turing caveat: Computational complexity classes (P, NP, BQP) are invariant under change of base. The advantages of ternary are in constant factors and practical efficiency, not asymptotic complexity. This is important to state honestly — but constant factors are what determine whether a chip is commercially viable, whether a model fits in memory, whether a system runs on renewable energy. At engineering scale, constant factors are everything.\n\n# 1.8 The Provably Optimal Classical Result\n\nBachet's weight problem (1612) provides the cleanest proof of balanced ternary's optimality: with a two-pan balance, weights of powers of 3 placed on either pan can measure any integer weight from 1 to $(3^n - 1)/2$ — a factor of approximately $1.5 \\times$ better than binary powers on one pan. This is the only classical domain where balanced ternary has been proven strictly optimal, and it captures the essential insight: when you can use both signs (place weights on either pan), ternary beats binary by a provable margin.\n\n# Part II: Strategic Architecture — The Six Sovereign Pillars\n\nThe Flywheel Structure",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 11,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\nThe Parallel Empire is built on six interdependent pillars. They are not built simultaneously — they are activated in sequence, each one funding and enabling the next. The flywheel starts with Pillar 1 (AI) and cascades outward.\n\n![img-0.jpeg](img-0.jpeg)\n\n# Pillar 1: Sovereign AI — The Entry Point\n\nWhat it is: A ternary-native AI inference engine, starting with ternary-quantized open-weight models (Llama, Mistral, Qwen), progressing to a custom ternary training framework, and",
+            "images": [
+              {
+                "id": "img-0.jpeg",
+                "top_left_x": 195,
+                "top_left_y": 524,
+                "bottom_right_x": 1501,
+                "bottom_right_y": 1707,
+                "image_base64": null,
+                "image_annotation": "{\"image_type\": \"graph\", \"short_description\": \"A diagram showing the relationship between six pillars: Narrative, Governance, Economy, Truth, Energy, and AI. Narrative legitimizes Governance and Economy, which regulate and fund Truth and Energy, respectively. Truth verifies and is powered by Energy, while AI serves as the entry point.\"}"
+              }
+            ],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 12,
+            "markdown": "# Made with Xodo PDF Reader and Editor\n\nultimately to ternary-native foundation models.\n\nWhy it's the entry point: AI is the highest-leverage technology of 2026. It touches every other pillar. A sovereign AI capability that is architecturally differentiated (ternary-native) and practically superior (lower energy, lower cost, faster inference) creates immediate economic value and attracts talent, capital, and attention.\n\nTechnical starting point (executable in 72 hours):\n\nBitNet b1.58 has already proven the concept: ternary weights  $\\{-1,0,+1\\}$  match full-precision accuracy at  $3\\times$  lower energy. The open-source implementations exist. The entry move is:\n\n1. Fork the BitNet inference kernel (Microsoft's 1-bit LLM framework, MIT licensed)\n2. Implement balanced ternary arithmetic in the core matmul operations (replacing the current binary-encoded ternary)\n3. Benchmark against binary baselines on standard tasks (MMLU, HumanEval, GSM8K)\n4. Publish results openly, establishing technical credibility\n\nThe key architectural choice: Native balanced ternary representation in memory and arithmetic, not binary-encoded ternary. This means the weight tensor stores actual trits (using 2 bits per trit in current binary hardware, progressing to native trit storage as ternary hardware matures). The inference kernel performs balanced ternary addition and multiplication using the carry-free multiplication table and 2-carry addition table described in Part I.\n\nMilestone targets:\n\n|  Milestone | Timeline | Metric  |\n| --- | --- | --- |\n|  Fork + balanced ternary matmul kernel | Week 1-2 | Working code, passing unit tests  |\n|  Benchmark on 7B parameter | Week 3-4 | Perplexity within 1% of binary  |\n|   |  | test  |\n|  Benchmark on 7B parameter + 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 |  |   |",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 13,
+            "markdown": "# Made with Xodo PDF Reader and Editor\n\n|  model |  | baseline  |\n| --- | --- | --- |\n|  Inference speed benchmark | Month 2 | >2× throughput on consumer GPU  |\n|  Energy benchmark | Month 2 | >2.5× efficiency on consumer GPU  |\n|  Public technical report | Month 3 | Published on arXiv or equivalent  |\n|  Community adoption (stars/forks) | Month 4-6 | >1,000 GitHub stars  |\n|  First external contributor | Month 3-6 | Verified PR merged  |\n\nOpen-source starting points:\n\n|  Component | Repository/Resource | License  |\n| --- | --- | --- |\n|  BitNet inference | microsoft/BitNet (GitHub) | MIT  |\n|  Base models for quantization | meta-llama/Llama-3, mistralai/Mistral | Llama Community / Apache 2.0  |\n|  CUDA kernel development | NVIDIA/cutlass | BSD 3-Clause  |\n|  Ternary arithmetic reference | Knuth, TAOCP Vol. 2, §4.1 | Reference  |\n|  Balanced ternary ALU design | Louis-dr/ternalu3 (GitHub) | Open  |\n\n# Pillar 2: Sovereign Energy\n\nWhat it is: Distributed energy generation and storage that powers the AI infrastructure independently of centralized grids. Starting with solar+battery installations at compute nodes, progressing to a mesh energy network.",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 14,
+            "markdown": "# Made with Xodo PDF Reader and Editor\n\nWhy it connects: AI inference requires energy. Dependence on centralized energy grids is a sovereignty vulnerability. The ternary AI engine’s 3× energy efficiency advantage means each watt goes further, making off-grid operation viable sooner.\n\nEntry mechanism: The ternary AI inference engine’s energy efficiency creates a measurable cost advantage. This advantage funds distributed solar+battery installations at edge compute locations. Each installation simultaneously serves as a proof-of-concept for the energy pillar and reduces operational cost for the AI pillar.\n\nPrecedent: Bitcoin mining drove massive investment in renewable energy infrastructure because miners follow cheap energy. The same dynamic applies here: ternary inference follows cheap, sovereign energy.\n\nPhase 1 target (Month 6–12): One self-powered edge inference node. Solar array + battery + ternary inference server. Proof that the AI pillar can operate independently of grid energy.\n\n# Pillar 3: Sovereign Truth/Verification\n\nWhat it is: A cryptographic verification layer that provides provable authenticity for AI outputs, data provenance, and identity — built on post-quantum cryptographic primitives that are structurally aligned with ternary arithmetic.\n\nWhy it connects: As AI-generated content becomes indistinguishable from human-generated content, the ability to verify provenance becomes critical infrastructure. The Eisenstein integer lattice and balanced ternary search space described in Part I are structurally aligned with NIST’s post-quantum standards (Kyber, Dilithium).\n\nTechnical foundation: Lattice-based cryptography on the ternary lattice $\\{-1, 0, 1\\}^n$. Content signing using post-quantum schemes. Merkle tree commitments for data provenance. Zero-knowledge proofs for privacy-preserving verification.",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 15,
+            "markdown": "# Made with Xodo PDF Reader and Editor\n\nEntry mechanism: Every output from the Pillar 1 AI engine is signed with a ternary-native post-quantum signature. This creates a growing corpus of verified AI outputs that demonstrates the verification layer’s value.\n\n## Pillar 4: Sovereign Economy\n\nWhat it is: An economic protocol that enables value exchange within the Parallel Empire without dependence on incumbent financial infrastructure. Not necessarily a cryptocurrency — possibly a mutual credit system, a time-based currency, or a programmable obligation network.\n\nWhy it connects: The AI engine generates economic value (inference-as-a-service). The energy network trades surplus capacity. The verification layer enables trust without intermediaries. These three create a natural economic substrate.\n\n## Design principles:\n\n1. Earned, not mined (value comes from productive contribution, not proof-of-work)\n2. Ternary-native accounting (balanced ternary arithmetic eliminates rounding errors in financial calculations because truncation = rounding)\n3. Post-quantum secure (using Pillar 3’s verification layer)\n4. Programmable obligations (smart contracts for service agreements)\n\n**Precedent:** The early Buddhist Sangha operated a complete parallel economy with its own rules of exchange, mutual support, and resource allocation — sustaining itself for 2,500+ years. Bitcoin demonstrated that a parallel monetary system can bootstrap from zero to trillion-dollar scale in 15 years.\n\n**Phase 1 target (Month 9–18):** Internal credit system among founding team and early contributors. Track contributions, allocate credits, enable exchange.",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          }
+        ],
+        "model": "mistral-ocr-latest",
+        "usage_info": {
+          "pages_processed": 8,
+          "doc_size_bytes": 279488
+        },
+        "document_annotation": {
+          "language": "en",
+          "chapter_titles": [
+            "Euler's proof of Fermat's Last Theorem for n = 3",
+            "For post-quantum cryptography: The Shortest Vector Problem (SVP) and Learning with Errors (LWE)",
+            "1.6 Qutrits: The Convergence Point",
+            "1.7 The Engineering Reality: 2025-2026 State of the Art",
+            "1.8 The Provably Optimal Classical Result",
+            "Part II: Strategic Architecture — The Six Sovereign Pillars",
+            "The Flywheel Structure",
+            "Pillar 1: Sovereign AI — The Entry Point",
+            "Pillar 2: Sovereign Energy",
+            "Pillar 3: Sovereign Truth/Verification",
+            "Pillar 4: Sovereign Economy"
+          ],
+          "summary": "El document tracta sobre l'aplicació de l'aritmètica ternària en diversos camps com la teoria de nombres, la criptografia postquàntica i la computació quàntica. Explica la prova d'Euler del Teorema de Fermat per a n = 3, que depèn de la factorització en Z[ω], i com el problema del vector més curt (SVP) i l'aprenentatge amb errors (LWE) són fonaments dels algoritmes postquàntics estandarditzats per NIST. El text també explora els qutrits, sistemes quàntics amb tres estats base, i la seva relació amb l'aritmètica ternària i les constants transcendents. Es detallen resultats experimentals recents sobre qutrits, com portes d'entrellaçament i mitigació d'errors, i la seva aplicació en la computació quàntica. A més, es discuteix l'estat actual de la tecnologia ternària, incloent desenvolupaments en lògica ternària i dispositius de memòria flotant. El document també presenta una estructura estratègica basada en sis pilars interdependents, començant per la IA sobirana, que utilitza un motor d'inferència ternària per crear valor econòmic i atreure talent i capital. Es detallen els objectius i cronogrames per a cada pilar, incloent la creació d'un node d'inferència d'edge autoalimentat i un sistema de crèdit intern per a l'economia sobirana."
+        }
+      }
+    },
+    {
+      "start_page": 16,
+      "end_page": 23,
+      "response": {
+        "pages": [
+          {
+            "index": 16,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\n# Pillar 5: Sovereign Governance\n\nWhat it is: Decision-making protocols for the Parallel Empire that are transparent, accountable, and resistant to capture. Not democracy-by-default — rather, a system designed from first principles for the specific requirements of a distributed technology civilization.\n\n## Design principles:\n\n1. Consent-based (opt-in participation, exit rights preserved)\n2. Competence-weighted (domain expertise matters for domain decisions)\n3. Transparent process, private deliberation (decisions are auditable, but working discussions are protected)\n4. Antifragile (stress makes the system stronger, not weaker)\n\n**Precedent**: Linux kernel governance (Benevolent Dictator + lieutenants + meritocratic contribution), IETF rough consensus, Ostrom’s commons governance principles (Nobel Prize 2009).\n\nPhase 1 target (Month 12–24): Published governance charter. Decision log with public rationale. First contested decision resolved through the protocol.\n\n# Pillar 6: Sovereign Narrative\n\nWhat it is: The memetic and cultural layer that makes the Parallel Empire legible, attractive, and self-reinforcing. The story that recruits builders, retains contributors, and provides meaning beyond economic incentive.",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 17,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\nWhy it's last but not least: Narrative without substance is propaganda. Substance without narrative is invisible. The narrative pillar is activated last because it requires real achievements to narrate — but it is designed from Day 1.\n\nThe core narrative (detailed in Part VI): The universe computes in threes. Binary was a detour — necessary, productive, but architecturally suboptimal. The return to ternary is not regression but completion. We are building the infrastructure for the next computational era.\n\n# Part III: Execution Roadmaps\n\n# Phase 0: Days 0–90 — The Tapas (Austerity/Heat)\n\nThis phase requires nothing but a computer, an internet connection, and disciplined execution. Zero capital expenditure. The tapas generates heat through concentrated effort.\n\n# Week 1-2: Foundation\n\n|  Task | Deliverable | Verification  |\n| --- | --- | --- |\n|  Set up development environment | Ubuntu/NixOS workstation with CUDA toolkit | nvidia-smi shows GPU  |\n|  Fork BitNet repository | Personal GitHub repo with | Branch exists, CI passes  |",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 18,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\n|   | balanced ternary branch |   |\n| --- | --- | --- |\n|  Implement balanced ternary trit type | trit.h / trit.py with {−1, 0, 1} arithmetic | Unit tests pass for all 9 add, 9 mul entries  |\n|  Write balanced ternary matmul kernel (CPU) | bt_matmul.c or bt_matmul.py | Correctness verified against numpy  |\n|  Begin technical blog/log | First post: “Why Balanced Ternary for AI Inference” | Published on personal site or GitHub Pages  |\n\n# Week 3-4: First Benchmark\n\n|  Task | Deliverable | Verification  |\n| --- | --- | --- |\n|  Quantize a 7B model to balanced ternary weights | Model checkpoint in BT format | File exists, loadable  |\n|  Run perplexity evaluation on WikiText-103 | Benchmark report | Perplexity within 2% of BF16 baseline  |\n|  Profile memory usage | Memory report | >2× reduction vs BF16  |\n|  Write second blog post | “Balanced Ternary 7B: First Benchmarks” | Published  |\n\n# Week 5-8: GPU Kernel\n\n|  Task | Deliverable | Verification  |\n| --- | --- | --- |\n|  Implement CUDA balanced ternary matmul | bt_matmul.cu | Correctness + >2× throughput vs BF16 on same GPU  |\n|  Optimize memory layout for | Trit-packed tensor format | Memory benchmark shows  |",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 19,
+            "markdown": "# Made with Xodo PDF Reader and Editor\n\n|  trit packing |  | expected compression  |\n| --- | --- | --- |\n|  Run inference speed benchmarks | Tokens/second comparison | Published benchmark table  |\n|  Open-source release v0.1 | GitHub release with README, benchmarks, install instructions | Installable by external user in <10 minutes  |\n\n# Week 9-12: Community &amp; Credibility\n\n|  Task | Deliverable | Verification  |\n| --- | --- | --- |\n|  Write arXiv-quality technical report | PDF with full methodology, benchmarks, ablations | Submitted to arXiv  |\n|  Present at one online meetup/seminar | Recording or slides | Publicly accessible  |\n|  Engage with BitNet/quantization community | Forum posts, issue responses, PR reviews | Observable activity  |\n|  Reach 500+ GitHub stars | Star count | Visible on repo  |\n|  Identify and recruit first contributor | Merged PR from external contributor | Git log  |\n|  Energy efficiency benchmark | Joules per token comparison | Published data  |\n\n# Phase 0 Exit Criteria (all must be met)\n\n[ ] Working balanced ternary inference kernel (CPU + GPU)\n[ ] Benchmarked on  $\\geq 2$  model sizes (7B, 13B)",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 20,
+            "markdown": "# Made with Xodo PDF Reader and Editor\n\n- [ ] Perplexity within 1% of binary baseline\n- [ ] Throughput ≥2× binary baseline on same hardware\n- [ ] Energy efficiency ≥2.5× binary baseline\n- [ ] Open-source release with documentation\n- [ ] ≥500 GitHub stars\n- [ ] ≥1 external contributor\n- [ ] Technical report published\n- [ ] ≥10 blog posts documenting the journey\n\n# Phase 1: Days 90–365 — The Churning\n\nCapital may now enter. The technical credibility from Phase 0 attracts it. This phase builds the first real products and the first real community.\n\n# Quarter 2 (Months 4–6): Product\n\n|  Objective | Deliverable | KPI  |\n| --- | --- | --- |\n|  Launch inference-as-a-service API | REST API serving ternary-quantized models | <100ms p99 latency, >99.5% uptime  |\n|  Build CLI tool for local ternary inference | asura-infer CLI | Installable via pip/cargo, <5 min setup  |\n|  Implement model conversion pipeline | Binary → Balanced Ternary converter | Supports Llama, Mistral, Qwen families  |\n|  Establish benchmark suite | Standardized eval harness for | Reproducible by any  |",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 21,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\n# Quarter 3 (Months 7–9): Scale\n\n|  Objective | Deliverable | KPI  |\n| --- | --- | --- |\n|  Training framework (Phase 1) | Ternary-aware training loop (STE + custom quantization) | Train 1B model from scratch in BT  |\n|  Energy pilot | First solar-powered inference node | 24-hour continuous operation demonstrated  |\n|  Community growth | Active Discord/Matrix + monthly virtual meetup | >100 active weekly contributors  |\n|  Developer documentation | Comprehensive docs site | >50 pages, tutorials for 5 common use cases  |\n|  First revenue | Paying API customers | >$1,000 MRR  |\n\n# Quarter 4 (Months 10–12): Consolidation\n\n|  Objective | Deliverable | KPI  |\n| --- | --- | --- |\n|  Ternary training at scale | Train 7B model natively in balanced ternary | Benchmark competitive with binary-trained 7B  |\n|  Verification layer v1 | Content provenance system using PQ signatures | Deployed on all API outputs  |\n|  Economic protocol design | Whitepaper for internal credit | Published, peer-reviewed by  |",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 22,
+            "markdown": "# Made with Xodo PDF Reader and Editor\n\n|   | system | ≥3 external experts  |\n| --- | --- | --- |\n|  Governance charter v1 | Published decision-making framework | First 3 decisions made through the protocol  |\n|  Narrative assets | Website, manifesto, visual identity, 3 long-form publications | Published and circulating  |\n|  Year 1 retrospective | Public technical + strategic report | Published  |\n\n## Phase 1 Exit Criteria\n\n- ☐ Ternary training framework operational\n- ☐ ≥$10,000 MRR from inference services\n- ☐ ≥1 solar-powered inference node operational\n- ☐ ≥500 active community members\n- ☐ ≥10 external contributors to core codebase\n- ☐ Post-quantum verification layer deployed\n- ☐ Governance charter published and operational\n- ☐ ≥3 peer-reviewed or arXiv publications\n- ☐ Technical talk at ≥1 major conference (NeurIPS, ICML, or equivalent)\n\n## Phase 2: Years 2–5 — The Amrita (Nectar)\n\nThis is the compounding phase. Each pillar reinforces the others. The flywheel accelerates.",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 23,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\nYear 2: Foundation Models + Energy Network\n\n|  Pillar | Objective | Target  |\n| --- | --- | --- |\n|  AI | Train 70B+ ternary-native foundation model | Top-10 on major benchmarks  |\n|  AI | Ternary vision + multimodal models | Competitive with binary SOTA  |\n|  Energy | 10-node solar-powered inference mesh | Geographic distribution across ≥3 regions  |\n|  Truth | Verification layer adopted by ≥5 external projects | Signed content volume >1M items  |\n|  Economy | Internal credit system operational | >100 participants  |\n|  Governance | First governance evolution (charter amendment) | Completed through protocol  |\n|  Narrative | Brand recognition in AI research community | Invited talks, media coverage  |\n\nYear 3: Ecosystem + Hardware\n\n|  Pillar | Objective | Target  |\n| --- | --- | --- |\n|  AI | Ternary model ecosystem (fine-tuning, adapters, agents) | >100 community-built models  |\n|  Energy | Revenue from energy trading | >$100K annual  |",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          }
+        ],
+        "model": "mistral-ocr-latest",
+        "usage_info": {
+          "pages_processed": 8,
+          "doc_size_bytes": 279488
+        },
+        "document_annotation": {
+          "language": "en",
+          "chapter_titles": [
+            "Pillar 5: Sovereign Governance",
+            "Pillar 6: Sovereign Narrative",
+            "Part III: Execution Roadmaps",
+            "Phase 0: Days 0–90 — The Tapas (Austerity/Heat)",
+            "Phase 1: Days 90–365 — The Churning",
+            "Phase 2: Years 2–5 — The Amrita (Nectar)"
+          ],
+          "summary": "El document descriu un pla per a establir un 'Imperi Paral·lel', centrat en cinc pilars principals: governança sobirana, narrativa sobirana, execució, energia i veritat. El pilar de governança sobirana es basa en protocols de presa de decisions transparents, responsables i resistents a la captura, inspirats en models com el govern del nucli Linux i els principis d'Ostrom. El pilar de narrativa sobirana es refereix a la creació d'una història que faci l'Imperi Paral·lel llegible, atractiu i auto-reforçat. El document també detalla les fases d'execució, incloent-hi la Fase 0 (Dies 0–90), que es centra en la configuració de l'entorn de desenvolupament, la implementació de kernels de matrius ternàries equilibrades i la publicació de resultats en blogs. La Fase 1 (Dies 90–365) implica el llançament de productes reals i la construcció d'una comunitat, mentre que la Fase 2 (Anys 2–5) es centra en la construcció de models de fundació, la creació d'una xarxa d'energia i l'establiment d'un sistema econòmic intern. El document també inclou criteris de sortida per a cada fase i objectius específics per a cada any de la Fase 2."
+        }
+      }
+    },
+    {
+      "start_page": 24,
+      "end_page": 31,
+      "response": {
+        "pages": [
+          {
+            "index": 24,
+            "markdown": "# Made with Xodo PDF Reader and Editor\n\n|   | (surplus capacity) |   |\n| --- | --- | --- |\n|  Truth | Verification protocol submitted for standardization | IETF or equivalent draft  |\n|  Economy | External participants in credit system | >1,000  |\n|  Hardware | First ternary FPGA/ASIC design partnership | Working prototype  |\n|  Governance | Federated governance across multiple working groups | >5 active working groups  |\n\n# Year 4: Sovereignty Threshold\n\n|  Pillar | Objective | Target  |\n| --- | --- | --- |\n|  AI | Ternary models as default choice for efficiency-constrained deployment | >10% market share in edge AI  |\n|  Energy | Energy network self-sustaining | Revenue > operating cost  |\n|  Truth | Verification protocol in production use by ≥3 major platforms | >100M signed items  |\n|  Economy | Credit system interoperable with external financial systems | Convertibility established  |\n|  Hardware | First commercial ternary inference accelerator | Available for purchase  |\n|  Governance | Governance model | Documented influence  |",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 25,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\n# Year 5: The Post-Indra Position\n\n|  Pillar | Objective | Target  |\n| --- | --- | --- |\n|  AI | Ternary-native training + inference as industry standard pathway | Recognized in surveys/reports  |\n|  Energy | 100+ node global inference-energy mesh | Operates across ≥10 countries  |\n|  Truth | Verification layer as infrastructure (like TLS/HTTPS) | De facto standard for AI provenance  |\n|  Economy | Functioning parallel economic layer | >10,000 participants, >$10M annual volume  |\n|  Hardware | Qutrit quantum interface operational | First qutrit-classical hybrid computation  |\n|  Narrative | \"Ternary computing\" recognized as legitimate paradigm | Wikipedia article, textbook references  |\n\n# Part IV: Economic Model &amp; Unit Economics",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 26,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\n# Revenue Model\n\nThe Parallel Empire generates revenue through four mechanisms, activated sequentially:\n\n# Mechanism 1: Inference-as-a-Service (Month 4+)\n\nUnit economics:\n\n|  Parameter | Binary Baseline | Ternary Target | Advantage  |\n| --- | --- | --- | --- |\n|  GPU memory per 7B model | ~14 GB (BF16) | ~4.5 GB (BT) | 3.1×  |\n|  Tokens/second (A100) | ~120 tok/s | ~300 tok/s | 2.5×  |\n|  Energy per 1M tokens | ~0.5 kWh | ~0.17 kWh | 3×  |\n|  Cost per 1M tokens (cloud GPU) | ~$0.60 | ~$0.20 | 3×  |\n|  Selling price per 1M tokens | — | $0.30 | 50% margin  |\n\nAt 100M tokens/day (modest for a public API):\n\nMonthly revenue = 100M × 30 × $0.30/1M = $900/month\n\nMonthly cost = 100M × 30 × $0.20/1M = $600/month",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 27,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\nMonthly margin = $300/month (33%)\n\nAt 10B tokens/day (medium scale, ~Year 2):\n\nMonthly revenue = $90,000\nMonthly cost = $60,000\nMonthly margin = $30,000\n\n# Mechanism 2: Model Conversion Services (Month 6+)\n\nEnterprises wanting to deploy existing models more efficiently pay for conversion to balanced ternary format plus ongoing support.\n\n|  Tier | Service | Price  |\n| --- | --- | --- |\n|  Self-serve | Open-source converter + docs | Free (community growth)  |\n|  Supported | Conversion + validation + benchmark report | $500-$5,000 per model  |\n|  Enterprise | Custom optimization + SLA + integration support | $10,000-$50,000/engagement  |\n\n# Mechanism 3: Energy Surplus Trading (Year 2+)\n\nSolar-powered inference nodes generate more energy than needed during peak sunlight. Surplus is sold back to local grids or to other compute providers.\n\n# Mechanism 4: Verification-as-a-Service (Year 2+)",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 28,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\nContent signing and provenance verification for AI-generated content. Per-signature pricing or subscription model.\n\n# Cost Structure\n\n# Phase 0 (Days 0-90): Near-Zero\n\n|  Item | Cost | Funding Source  |\n| --- | --- | --- |\n|  Cloud GPU (development/benchmarking) | $200-$500/month | Personal / free credits (Lambda, Colab)  |\n|  Domain + hosting | $20/month | Personal  |\n|  Everything else | $0 | Sweat equity  |\n\n# Phase 1 (Days 90-365): Bootstrap\n\n|  Item | Monthly Cost | Funding Source  |\n| --- | --- | --- |\n|  Cloud GPU (production) | $1,000-$3,000 | Revenue + grants  |\n|  Solar pilot hardware | $5,000-$15,000 one-time | Grant or angel investment  |\n|  Team (2-3 part-time contributors) | $0-$5,000 (equity + credits) | Internal credit system  |\n|  Operations | $500 | Revenue  |",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 29,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\n# Break-Even Analysis\n\nAt $0.30/1M tokens with 33% margin, break-even on $3,000/month cloud GPU cost requires:\n\n3,000 / 0.10 (margin per 1M tokens) = 30,000M = 30B tokens/month ≈ 1B tokens/day\n\nThis is achievable with approximately 50-100 active API users at moderate usage levels. Target: Month 8-10.\n\n# Part V: Recruitment &amp; Signaling Playbook\n\n# Who You Need and When\n\n# Phase 0 (Solo Founder or Co-Founder Pair)\n\nProfile: Systems programmer with CUDA experience OR machine learning engineer with quantization expertise. Ideally both in one person or a pair.\n\nWhere to find them: The person reading this document may be this person. If not:",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 30,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\n|  Signal | Channel | Approach  |\n| --- | --- | --- |\n|  BitNet/quantization contributors | GitHub activity | Direct message with specific technical question  |\n|  Balanced ternary enthusiasts | r/math, Hacker News, math Twitter | Publish blog posts, let them find you  |\n|  CUDA kernel developers | NVIDIA developer forums, GPU programming communities | Technical challenge: \"Can you beat this benchmark?\"  |\n|  Former Setun researchers (yes, some are still active) | Academic networks, Russian language forums | Historical respect + modern relevance  |\n\n## Phase 1 (Core Team: 3–7 people)\n\n|  Role | Why | When  |\n| --- | --- | --- |\n|  ML Research Engineer | Training framework development | Month 4  |\n|  Systems/Infrastructure Engineer | API, deployment, scaling | Month 5  |\n|  Cryptographer | Post-quantum verification layer | Month 6  |\n|  Technical Writer | Documentation, blog, arXiv papers | Month 4  |\n|  Community Manager | Discord/Matrix, contributor onboarding | Month 6  |\n\n## Signaling Strategy: How to Attract Without Recruiting",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 31,
+            "markdown": "# Made with Xodo PDF Reader and Editor\n\nThe Parallel Empire does not hire. It attracts. The signaling strategy operates on three channels:\n\n## Channel 1: Technical Credibility (Primary)\n\nPublish working code. Publish benchmarks. Publish honest assessments of what works and what doesn't. Technical credibility is the only signal that matters in Phase 0. Every blog post, every benchmark, every line of open-source code is a recruiting signal.\n\n## Channel 2: Narrative Resonance (Secondary)\n\nThe mythic frame is real and useful. It provides meaning beyond economic incentive. Builders who resonate with the narrative of building a parallel, sovereign computational civilization will self-select. Don't recruit them — let the narrative attract them.\n\n## Channel 3: Economic Alignment (Tertiary)\n\nThe internal credit system ensures that early contributors are compensated fairly when the economic pillar activates. Transparent, pre-published allocation rules. No stealth equity negotiations.\n\n## The Anti-Patterns to Avoid\n\n|  Anti-Pattern | Why It Fails | What to Do Instead  |\n| --- | --- | --- |\n|  Premature hiring | Burns cash, creates obligations before product-market fit | Attract contributors, compensate with credits  |\n|  Stealth mode | Prevents community formation, no feedback loop | Build in public from Day 1  |\n|  Grand announcements before results | Destroys credibility when results don’t match | Publish results first, narrative second  |",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          }
+        ],
+        "model": "mistral-ocr-latest",
+        "usage_info": {
+          "pages_processed": 8,
+          "doc_size_bytes": 279488
+        },
+        "document_annotation": {
+          "language": "en",
+          "chapter_titles": [
+            "Year 4: Sovereignty Threshold",
+            "Year 5: The Post-Indra Position",
+            "Part IV: Economic Model & Unit Economics",
+            "Revenue Model",
+            "Mechanism 1: Inference-as-a-Service (Month 4+)",
+            "Mechanism 2: Model Conversion Services (Month 6+)",
+            "Mechanism 3: Energy Surplus Trading (Year 2+)",
+            "Mechanism 4: Verification-as-a-Service (Year 2+)",
+            "Cost Structure",
+            "Phase 0 (Days 0-90): Near-Zero",
+            "Phase 1 (Days 90-365): Bootstrap",
+            "Break-Even Analysis",
+            "Part V: Recruitment & Signaling Playbook",
+            "Who You Need and When",
+            "Phase 0 (Solo Founder or Co-Founder Pair)",
+            "Phase 1 (Core Team: 3–7 people)",
+            "Signaling Strategy: How to Attract Without Recruiting",
+            "Channel 1: Technical Credibility (Primary)",
+            "Channel 2: Narrative Resonance (Secondary)",
+            "Channel 3: Economic Alignment (Tertiary)",
+            "The Anti-Patterns to Avoid"
+          ],
+          "summary": "El document descriu un pla estratègic per a un projecte anomenat 'Parallel Empire', centrat en la computació ternària i la seva implementació en diversos camps com la intel·ligència artificial, l'energia, la verificació, l'economia i el maquinari. El text està estructurat en diverses seccions que detallen els objectius i els objectius per als anys 4 i 5, així com els models econòmics i les estratègies de reclutament. Els punts clau inclouen la reducció de la memòria GPU, l'augment de l'eficiència energètica i la creació d'un sistema econòmic paral·lel. El document també esmenta les estratègies de senyalització per atreure contribuïdors sense contractar-los directament, enfatitzant la credibilitat tècnica, la ressonància narrativa i l'alineació econòmica. Finalment, s'esmenten els antipatrons a evitar, com la contractació prematura i el mode furtiu."
+        }
+      }
+    },
+    {
+      "start_page": 32,
+      "end_page": 39,
+      "response": {
+        "pages": [
+          {
+            "index": 32,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\n|  Copying incumbent architecture | Competes on their terms, where they have advantages | Differentiate architecturally (ternary-native)  |\n| --- | --- | --- |\n|  Adversarial framing | Creates enemies, invites retaliation | Parallel, not adversarial — “we’re building something new”  |\n\n# Part VI: Narrative &amp; Memetic Framework\n\n## The Core Narrative\n\nOne-sentence version: We are building the ternary computing layer — a sovereign, energy-efficient, mathematically optimal foundation for AI, cryptography, and computation that operates independently of the binary incumbent order.\n\nOne-paragraph version: Binary computing was a brilliant engineering choice for the vacuum tube era. It won because two-state switches were cheap and reliable, not because base 2 is mathematically optimal — base 3 is, by a provable margin. Now, as AI demands ever more efficient computation, as post-quantum cryptography requires lattice structures naturally aligned with ternary, and as qutrit quantum computing opens up richer Hilbert spaces, the mathematical arguments for ternary are converging with engineering feasibility. We are building the infrastructure for this transition: a ternary-native AI inference engine, a post-quantum verification layer, a sovereign energy mesh, and the economic and governance protocols to sustain them. We are not fighting the binary world. We are building the ternary one.\n\n## Memetic Assets",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 33,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\n# The Key Phrases\n\n|  Phrase | Function  |\n| --- | --- |\n|  \"The universe computes in threes\" | Orienting metaphor — ternary as natural  |\n|  \"Truncation is rounding\" | Technical elegance made memorable (Knuth’s observation)  |\n|  \"Negation is free\" | Architectural advantage in one phrase  |\n|  \"Parallel, not adversarial\" | Strategic posture — non-threatening, sovereign  |\n|  \"The third base\" | Playful reference to Hayes’ famous American Scientist article  |\n|  \"Post-binary\" | Era-naming — positions ternary as the next paradigm  |\n|  \"Sovereignty through mathematics\" | Core value proposition  |\n\n# The Visual Identity\n\nThe visual identity should be rooted in the mathematics:\n\nThe trit symbol: A three-state indicator. Three concentric elements: empty (0), filled-positive (+1), filled-negative (-1). Simple, reproducible, recognizable.\n\nThe hexagonal motif: Reflecting the Eisenstein integer lattice — the natural geometric home of ternary arithmetic in the complex plane. Hexagons tile the plane (like ternary digits tile the number line).",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 34,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\nColor palette: Drawn from the three states: a neutral center (0), a warm positive (+1), a cool negative (-1). Suggested: charcoal/slate (0), amber/gold (+1), deep blue/indigo (-1).\n\n# Narrative Deployment Schedule\n\n|  When | What | Where  |\n| --- | --- | --- |\n|  Week 1 | “Why I’m Building a Ternary AI Engine” (personal blog post) | Personal site, Hacker News, Twitter  |\n|  Week 4 | “First Benchmarks” (technical post with real data) | arXiv, GitHub, Reddit  |\n|  Month 3 | Technical report (full methodology) | arXiv  |\n|  Month 6 | “The Ternary Manifesto” (longer-form vision piece) | Personal site, invited publications  |\n|  Month 9 | Conference talk | NeurIPS/ICML workshop or equivalent  |\n|  Month 12 | Year 1 retrospective (honest assessment) | Personal site, major tech publications  |\n\n# Part VII: Risk Matrix &amp; Pre-Mortem Mitigations",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 35,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\n# The Pre-Mortem Exercise\n\nIt is Month 12. The project has failed. Why?\n\n# Risk 1: \"Ternary Doesn't Actually Help\" (Technical Risk — HIGH)\n\nScenario: Benchmarks show that balanced ternary inference is not meaningfully faster or more efficient than optimized binary quantization (GPTQ, AWQ, etc.).\n\nProbability: 25%\n\nPre-mortem analysis: This would mean that the constant-factor advantages of ternary arithmetic are absorbed by the overhead of operating on binary hardware. The radix economy advantage is real but may be too small to overcome the optimization advantage of decades of binary infrastructure.\n\n# Mitigation:\n\n1. Benchmark honestly and continuously. If ternary doesn't win on current hardware, publish the negative result — this builds credibility.\n2. Pivot focus to ternary training (where the advantages may be larger) rather than inference.\n3. Accelerate the hardware partnership track (FPGAs/ASICs where ternary can be native).\n4. Maintain the qutrit bridge — even if classical ternary advantages are marginal, the quantum",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 36,
+            "markdown": "# Made with Xodo PDF Reader and Editor\n\nadvantages are proven (70× gate count, 90× solution quality).\n\nTrigger for pivot: If after 90 days of optimization, throughput advantage is &lt;1.5× on same hardware.\n\n## Risk 2: \"Incumbent Absorbs the Innovation\" (Strategic Risk — MEDIUM)\n\nScenario: Microsoft, Google, or NVIDIA implements ternary quantization natively, capturing the efficiency gains within the binary ecosystem.\n\nProbability: 40% (partial absorption is almost certain)\n\nPre-mortem analysis: BitNet b1.58 is already Microsoft Research. If they productize it, the inference efficiency advantage disappears for everyone.\n\n## Mitigation:\n\n1. This is actually good for the mission. If ternary quantization becomes standard, it validates the thesis and normalizes the paradigm.\n\n2. Differentiate on native ternary architecture (not just ternary weights on binary hardware) — this is harder to absorb.\n\n3. Differentiate on the full stack (verification, energy, governance) — no incumbent wants to build all six pillars.\n\n4. Move faster on the training framework, which is harder to replicate than inference.\n\n## Risk 3: \"Nobody Cares\" (Market/Adoption Risk —",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 37,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\n# MEDIUM)\n\nScenario: The technical results are good but nobody adopts them because the ecosystem (tools, libraries, models) is too small.\n\nProbability: 30%\n\n## Mitigation:\n\n1. Ensure 100% compatibility with existing model formats (convert in, convert out).\n2. Make the efficiency gains so large they're worth the switching cost.\n3. Build the narrative layer — technical results alone don't drive adoption; stories do.\n4. Target a specific niche first (edge AI, where efficiency matters most) rather than competing broadly.\n\n## Risk 4: \"Founder Burns Out\" (Operational Risk — HIGH)\n\nScenario: The solo founder cannot sustain the intensity required across all dimensions (code, community, narrative, operations).\n\nProbability: 35%\n\n## Mitigation:\n\n1. Phase 0 is deliberately scoped for a single person working 40-60 hours/week, not 80+.\n2. Build in public to create accountability and external motivation.\n3. Recruit the first co-contributor by Month 3 at the latest.",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 38,
+            "markdown": "# Made with Xodo PDF Reader and Editor\n\n4. Maintain non-project activities (exercise, relationships, rest). Tapas without recovery is self-destruction.\n5. The 72-Hour Activation Sequence at the end of this document is designed to generate early momentum — momentum sustains motivation.\n\n# Risk 5: \"Regulatory/Legal Barriers\" (External Risk — LOW)\n\nScenario: Export controls, AI regulations, or patent claims block development or distribution.\n\nProbability: 10%\n\nMitigation:\n\n1. Open-source everything from Day 1 (hard to restrict what's already public).\n2. Use only permissively licensed dependencies.\n3. Publish in academic venues (establishes prior art).\n4. Distribute globally (no single jurisdiction can block a global open-source project — precedent: Linux, Bitcoin, Signal).\n\n# Full Risk Matrix\n\n|  Risk | Probability | Impact | Mitigation Quality | Net Risk  |\n| --- | --- | --- | --- | --- |\n|  Ternary doesn’t help | 25% | Critical | Strong (pivot paths exist) | MEDIUM  |",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 39,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\n|  Incumbent absorption | 40% | High | Strong (validates thesis) | MEDIUM-LOW  |\n| --- | --- | --- | --- | --- |\n|  No adoption | 30% | High | Medium (requires execution) | MEDIUM  |\n|  Founder burnout | 35% | Critical | Medium (structural mitigations) | MEDIUM-HIGH  |\n|  Regulatory barriers | 10% | Medium | Strong (open-source, global) | LOW  |\n|  Hardware never materializes | 20% | Medium | Strong (software-first, qutrit bridge) | LOW  |\n|  Better paradigm emerges | 15% | High | Low (fundamental risk) | MEDIUM  |\n|  Community toxicity/fragmentation | 20% | Medium | Medium (governance charter) | LOW-MEDIUM  |\n\n# Part VIII: Weekly KPIs &amp; Progress Proof\n\nThe Dashboard",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          }
+        ],
+        "model": "mistral-ocr-latest",
+        "usage_info": {
+          "pages_processed": 8,
+          "doc_size_bytes": 279488
+        },
+        "document_annotation": {
+          "language": "en",
+          "chapter_titles": [
+            "Part VI: Narrative & Memetic Framework",
+            "The Core Narrative",
+            "Memetic Assets",
+            "The Visual Identity",
+            "Narrative Deployment Schedule",
+            "Part VII: Risk Matrix & Pre-Mortem Mitigations",
+            "The Pre-Mortem Exercise",
+            "Risk 1: 'Ternary Doesn't Actually Help' (Technical Risk — HIGH)",
+            "Risk 2: 'Incumbent Absorbs the Innovation' (Strategic Risk — MEDIUM)",
+            "Risk 3: 'Nobody Cares' (Market/Adoption Risk — MEDIUM)",
+            "Risk 4: 'Founder Burns Out' (Operational Risk — HIGH)",
+            "Risk 5: 'Regulatory/Legal Barriers' (External Risk — LOW)",
+            "Full Risk Matrix",
+            "Part VIII: Weekly KPIs & Progress Proof",
+            "The Dashboard"
+          ],
+          "summary": "El document descriu un pla per construir una capa de computació ternària, que és una base matemàticament òptima per a la IA, la criptografia i el càlcul, independent de l'ordre binari existent. El text detalla la narrativa central, els actius memètics, la identitat visual i el calendari de desplegament de la narrativa. També inclou una anàlisi de riscos i mitigacions, així com un tauler de control per mesurar el progrés. Els riscos principals inclouen la possibilitat que la computació ternària no ofereixi avantatges significatius, que els actors establerts absorbeixin la innovació, la manca d'adopció, l'esgotament del fundador i les barreres regulatòries. El document subratlla l'importància de construir una narrativa atractiva i de treballar en públic per mantenir la motivació i la responsabilitat."
+        }
+      }
+    },
+    {
+      "start_page": 40,
+      "end_page": 47,
+      "response": {
+        "pages": [
+          {
+            "index": 40,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\nEvery Sunday, the founder(s) update these metrics. They are the proof that the tapas is generating heat.\n\n## Phase 0 KPIs (Weekly)\n\n|  KPI | Target (Week 4) | Target (Week 8) | Target (Week 12)  |\n| --- | --- | --- | --- |\n|  Lines of code (core kernel) | 2,000 | 5,000 | 10,000  |\n|  Unit test coverage | 80% | 90% | 95%  |\n|  Benchmark perplexity gap vs binary | <5% | <2% | <1%  |\n|  Throughput multiplier vs binary | 1.5× | 2.0× | 2.5×  |\n|  Energy efficiency multiplier | 1.5× | 2.5× | 3.0×  |\n|  GitHub stars | 100 | 300 | 500+  |\n|  Blog posts published | 3 | 6 | 10  |\n|  External contributors | 0 | 0 | 1+  |\n|  Technical report pages | 0 | 5 | 20+  |\n|  Hours of focused work this week | 45+ | 45+ | 45+  |",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 41,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\n## Phase 1 KPIs (Monthly)\n\n|  KPI | Month 4 | Month 6 | Month 9 | Month 12  |\n| --- | --- | --- | --- | --- |\n|  Monthly Recurring Revenue | $0 | $500 | $3,000 | $10,000  |\n|  API requests/day | 1,000 | 50,000 | 500,000 | 5,000,000  |\n|  Model formats supported | 2 | 5 | 10 | 15+  |\n|  Community members (active weekly) | 20 | 50 | 100 | 200+  |\n|  Core contributors | 2 | 4 | 6 | 10+  |\n|  Published papers | 1 | 2 | 3 | 5+  |\n|  Conference presentations | 0 | 1 | 2 | 3+  |\n|  Solar nodes operational | 0 | 0 | 1 | 1+  |\n|  Verified (signed) outputs | 0 | 10K | 100K | 1M+  |\n\n## The Weekly Ritual",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 42,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\nEvery Sunday evening:\n\n1. Update the KPI spreadsheet (15 minutes)\n2. Write a brief internal log entry: what worked, what didn't, what changes (15 minutes)\n3. Publish a brief external update: one thing learned, one result, one goal for next week (15 minutes)\n4. Review the risk matrix: has any probability changed? (10 minutes)\n5. Plan next week: three priorities, no more (10 minutes)\n\nTotal time: ~65 minutes/week. Non-negotiable.\n\n# 72-Hour Activation Sequence\n\n## This Is What You Do Right Now\n\nThe following sequence is designed to generate irreversible forward momentum in 72 hours. Each step produces a tangible, visible artifact. By the end of Hour 72, you will have working code, a public identity, and a community signal — making it harder to stop than to continue.\n\n## Hour 0-4: Environment",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 43,
+            "markdown": "# Made with Xodo PDF Reader and Editor\n\n- [ ] Install Ubuntu 24.04 or NixOS on your development machine (or verify existing setup)\n- [ ] Install CUDA toolkit (if GPU available) or set up cloud GPU access (Lambda Labs free credits, Google Colab Pro)\n- [ ] Install Python 3.11+, PyTorch 2.x, and Hugging Face Transformers\n- [ ] Create a fresh GitHub repository: [your-handle]/asura-ternary (or your preferred name)\n- [ ] Write a README.md with one paragraph: what this project is and why it exists\n- [ ] Push to GitHub. The repository is now public. You have crossed the threshold.\n\n## Hour 4–12: First Code\n\n- [ ] Implement trit.py: a balanced ternary digit type with the full arithmetic tables\n\n```python\n# Starter template — balanced ternary trit type\nclass Trit:\n\"\"\"A single balanced ternary digit: -1, 0, or +1.\"\"\"\n__slots__ = ('value',)\n\ndef __init__(self, v: int):\nassert v in (-1, 0, 1), f\"Trit must be -1, 0, or 1, got {v}\"\nself.value = v\n\ndef __neg__(self):\nreturn Trit(-self.value)  # Negation: swap -1 &lt;-&gt; 1, 0 stays\n\ndef __mul__(self, other):\nreturn Trit(self.value * other.value)  # Carry-free: always a single\ntrit",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 44,
+            "markdown": "# Made with Xodo PDF Reader and Editor\n\n```python\ndef __add__(self, other):\ns = self.value + other.value\nif s == 2: return Trit(-1), Trit(1)  # carry +1\nif s == -2: return Trit(1), Trit(-1)  # carry -1\nreturn Trit(s), Trit(0)  # no carry\n```\n\n- [ ] Implement balanced_ternary.py: conversion between integers and balanced ternary representation\n- [ ] Implement bt_tensor.py: a tensor class that stores weights as packed trits\n- [ ] Write unit tests for all three modules\n- [ ] Run tests. Green. Commit and push.\n\n# Hour 12-24: First Computation\n\n- [ ] Implement bt_matmul.py: matrix multiplication using balanced ternary arithmetic\n- [ ] Benchmark against numpy float32 matmul: correctness check on random matrices\n- [ ] Load a small model (GPT-2 124M) and convert its weights to balanced ternary\n- [ ] Run a single forward pass through one layer using your BT matmul\n- [ ] Verify output matches (within tolerance) the float32 forward pass\n- [ ] Commit and push with benchmark results in the commit message\n\n# Hour 24-36: First Content\n\n- [ ] Write blog post #1: \"Day 1: Building a Balanced Ternary AI Inference Engine\"\n- What you built\n- Why balanced ternary (cite the mathematics from Part I of this Codex)",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 45,
+            "markdown": "# Made with Xodo PDF Reader and Editor\n\n- First results (honest, including what doesn't work yet)\n- What's next\n\n- [ ] Publish on your personal site, GitHub Pages, or Substack\n- [ ] Post to Hacker News with a factual title (no hype)\n- [ ] Post to r/MachineLearning with benchmarks\n- [ ] Post to Twitter/X with one key result and a link\n\n# Hour 36–48: First Optimization\n\n- [ ] Profile the BT matmul: where are the bottlenecks?\n- [ ] Implement trit packing: store 5 trits per byte (3⁵ = 243 &lt; 256)\n- [ ] Re-benchmark with packed representation\n- [ ] If GPU available: write first CUDA kernel for BT matmul (even if slow)\n- [ ] Update README with current benchmarks\n- [ ] Commit and push\n\n# Hour 48–60: First Model\n\n- [ ] Convert Llama-3 8B (or Mistral 7B) weights to balanced ternary\n- [ ] Run perplexity evaluation on WikiText-103 (even if slow on CPU)\n- [ ] Record: perplexity score, memory usage, tokens/second\n- [ ] Compare to published BF16 and INT4 baselines\n- [ ] Add results to README in a clear table\n- [ ] Commit and push",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 46,
+            "markdown": "Made with Xodo PDF Reader and Editor\n\n# Hour 60–72: First Signal\n\n- [ ] Write blog post #2: “72 Hours In: Ternary 7B Benchmarks”\n- [ ] Create a CONTRIBUTING.md with clear instructions for how others can help\n- [ ] Create 5 GitHub Issues labeled “good first issue” for potential contributors\n- [ ] Create a ROADMAP.md linking to this Codex’s Phase 0 milestones\n- [ ] Set up a minimal community channel (GitHub Discussions, or a public Matrix room)\n- [ ] Update your GitHub profile to reflect this project\n- [ ] Send a brief update to 3–5 people whose opinion you respect, asking for honest technical feedback\n- [ ] Review the Phase 0 roadmap. Identify your three priorities for next week.\n- [ ] Commit. Push. Rest. The tapas has begun. The heat is real. The churn is underway.\n\n# Closing: The Honest Assessment\n\nThis Codex does not promise that building a parallel civilization layer is easy, likely, or even possible within five years. The mathematical foundations are sound — radix economy, carry-free multiplication, truncation-as-rounding, Eisenstein integer geometry, qutrit quantum advantages — but mathematics alone doesn’t build civilizations. Execution does. Community does. Sustained, disciplined effort over years does.\n\nThe threads documented in Part I — balanced ternary arithmetic, fractional part functions, transcendental constants, higher-dimensional geometry, and qutrit quantum computing — form a",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          },
+          {
+            "index": 47,
+            "markdown": "# Made with Xodo PDF Reader and Editor\n\nconstellation of related ideas, not a unified theory. The strongest connections (balanced ternary → symmetric residue → Hermite's identity → Cantor set → 3-adic integers) are algebraically tight. The connections to π are genuine but limited (π² has a base-3 BBP formula; π itself provably does not). The connections to higher geometry run through Eisenstein integers and lattice cryptography. The convergence point is qutrits, where ternary arithmetic meets quantum mechanics meets Lie algebra.\n\nWhat this Codex provides is the highest-leverage entry point (ternary-native AI inference), the cascade logic (how each pillar enables the next), the execution roadmap (what to do, when, and how to measure progress), and the 72-hour activation sequence (how to start before doubt has time to settle).\n\nThe universe may or may not compute in threes. But the mathematics says that if you're going to compute, three states are provably closer to optimal than two. And in 2026, with ternary-weight LLMs matching full-precision accuracy at 3× lower energy, with post-quantum cryptography built on lattices naturally aligned with ternary structure, and with qutrit quantum computers demonstrating 90× advantages — the window to build the ternary layer is open.\n\nThe question is whether someone will walk through it.\n\n\"The Asura's tapas is not prayer. It is engineering. It is code committed and pushed. It is benchmarks published honestly. It is the patient, compounding construction of something real. The heat generated by this discipline is what reshapes the cosmos.\"\n\nEnd of Codex v1.0\n\nThis document is itself an artifact of the Parallel Empire. Fork it. Improve it. Execute it.",
+            "images": [],
+            "dimensions": {
+              "dpi": 200,
+              "height": 2250,
+              "width": 1700
+            },
+            "tables": [],
+            "hyperlinks": [
+              "https://play.google.com/store/apps/details?id=com.xodo.pdf.reader"
+            ],
+            "header": null,
+            "footer": null
+          }
+        ],
+        "model": "mistral-ocr-latest",
+        "usage_info": {
+          "pages_processed": 8,
+          "doc_size_bytes": 279488
+        },
+        "document_annotation": {
+          "language": "en",
+          "chapter_titles": [
+            "Phase 0 KPIs (Weekly)",
+            "Phase 1 KPIs (Monthly)",
+            "The Weekly Ritual",
+            "72-Hour Activation Sequence",
+            "Closing: The Honest Assessment"
+          ],
+          "summary": "El document descriu un pla detallat per desenvolupar un sistema d'inferència d'IA basat en aritmètica ternària equilibrada. Inclou indicadors clau de rendiment (KPIs) per a dues fases: la Fase 0 (setmanal) i la Fase 1 (mensual), que abasten mètriques com línies de codi, cobertura de proves, perplexitat, rendiment, eficiència energètica, estrelles a GitHub, publicacions de blogs, i més. El document també detalla una seqüència d'activació de 72 hores per generar un impuls irreversible, incloent la configuració de l'entorn, la implementació del primer codi, la primera computació, la primera optimització, el primer model, i la primera senyal. A més, esmenta un ritual setmanal per actualitzar els KPIs, escriure registres interns i externs, i planificar la setmana següent. El text conclou amb una avaluació honesta sobre els reptes i les possibilitats de construir una civilització paral·lela basada en aritmètica ternària, destacant la importància de l'execució, la comunitat i l'esforç sostenit."
+        }
+      }
+    }
+  ]
+}
